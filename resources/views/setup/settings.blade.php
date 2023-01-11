@@ -85,6 +85,21 @@
                                                 <input type="email" id="email" class="form-control"
                                                     placeholder="email" name="email" value="{{$data->email}}">
                                             </div>
+                                            <div class="form-group">
+                                                <label for="admin_data_paginate">Admin Data Paginate</label>
+                                                <input type="number" id="admin_data_paginate" class="form-control phone"
+                                                    placeholder="8" name="admin_data_paginate" value="{{$data->admin_data_paginate}}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="frontend_data_paginate">Frontend Data Paginate</label>
+                                                <input type="number" id="frontend_data_paginate" class="form-control phone"
+                                                    placeholder="8" name="frontend_data_paginate" value="{{$data->frontend_data_paginate}}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">Email</label>
+                                                <input type="email" id="email" class="form-control"
+                                                    placeholder="email" name="email" value="{{$data->email}}">
+                                            </div>
                                         </div>
 
                                         <div class="form-actions center">

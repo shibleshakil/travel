@@ -28,10 +28,6 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function ($settings) {
             $settings->with('url', Route::currentRouteName());
             $settings->with('setting', DB::table('settings')->find(1));
-            if (!session()->has('popup')) {
-                view()->share('visit', 1);
-            }
-            session()->put('popup', 1);
         });
     }
 }

@@ -8,6 +8,12 @@
                 </a>
             </li>
             
+            <li @if($url=='admin.module.location.index' || $url=='admin.module.location.edit' ) class="active" @else class=" nav-item" @endif>
+                <a href="{{ route ('admin.module.location.index') }}"><i class="fa-solid fa-gauge"></i>
+                    <span class="menu-title" data-i18n="Location">Location</span>
+                </a>
+            </li>
+            
             <li class=" nav-item">
                 <a href="#"><i class="fa-solid fa-gear"></i></i>
                     <span class="menu-title" data-i18n="Setup">Setup</span>

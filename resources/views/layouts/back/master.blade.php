@@ -34,6 +34,9 @@
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset ('app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset ('app-assets/css/core/colors/palette-gradient.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset ('assets/css/summernote.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset ('assets/css/dropify.min.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <!-- link(rel='stylesheet', type='text/css', href=app_assets_path+'/css'+rtl+'/pages/users.css')-->
     <!-- END: Page CSS-->
 
@@ -48,6 +51,7 @@
 
 <body class="vertical-layout vertical-menu 2-columns   fixed-navbar" data-open="click" data-menu="vertical-menu"
     data-col="2-columns">
+    <input type="hidden" id="csrfToken" value="{{ csrf_token() }}">
 
     <!-- BEGIN: Header-->
     @include('layouts.back.header')
@@ -84,14 +88,32 @@
     <script src="{{ asset ('app-assets/vendors/js/tables/datatable/datatables.min.js')}}"></script>
     <script src="{{ asset ('app-assets/vendors/js/forms/toggle/bootstrap-checkbox.min.js')}}"></script>
     <script src="{{ asset ('app-assets/vendors/js/forms/toggle/switchery.min.js')}}"></script>
+    <script src="{{ asset ('assets/js/dropify.min.js')}}"></script>
 
     <!-- BEGIN: Theme JS-->
     <script src="{{ asset ('app-assets/js/core/app-menu.js')}}"></script>
     <script src="{{ asset ('app-assets/js/core/app.js')}}"></script>
+    <script src="{{ asset ('assets/js/datatable.js?v1.1')}}"></script>
+    <script src="{{ asset ('assets/js/dropify-init.js?v1.1')}}"></script>
+    <script src="{{ asset ('assets/js/common.js?v1.1')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
     <!-- END: Theme JS-->
     <!-- BEGIN: Page JS-->
     @yield('script')
     <!-- END: Page JS-->
+    <script>
+        $(".form").submit( function (){
+            $("#submitBtn").attr("disabled", true);
+            return true;
+        });
+
+        $(".select2").select2();
+        $('.summernote').summernote({
+            placeholder: '',
+            tabsize: 2,
+            minHeight: 150
+        });
+    </script>
 
 </body>
 <!-- END: Body-->

@@ -14,8 +14,9 @@ class Location extends Model
     protected $fillable = [
         'name',
         'slug',
-        'content',
-        'image',
+        'description',
+        'parent',
+        'feature_image',
         'map_lat',
         'map_lng',
         'map_zoom',

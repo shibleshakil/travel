@@ -20,6 +20,8 @@ class CreateSettingsTable extends Migration
             $table->string('short_logo')->nullable();
             $table->string('favicon')->nullable();
             $table->string('email')->nullable();
+            $table->tinyInteger('admin_data_paginate')->default(10);
+            $table->tinyInteger('frontend_data_paginate')->default(10);
             $table->tinyInteger('smtp_check')->default(0);
             $table->string('mail_transport')->nullable();
             $table->string('mail_host')->nullable();

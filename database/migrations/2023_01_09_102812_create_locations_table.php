@@ -17,7 +17,8 @@ class CreateLocationsTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
-            $table->text('content')->nullable();
+            $table->bigInteger('parent')->nullable()->default(0);
+            $table->text('description')->nullable();
             $table->string('feature_image')->nullable();
             $table->string('banner_image')->nullable();
             $table->string('map_lat',20)->nullable();

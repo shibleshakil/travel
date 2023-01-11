@@ -34,6 +34,14 @@ Route::group(['middleware' => ['auth']], function(){
             Route::match(['get', 'post'], 'app-setting', [App\Http\Controllers\Setup\SettingsController::class, 'appSetting'])->name('appSetting');
             Route::match(['get', 'post'], 'smtp-email-configaration', [App\Http\Controllers\Setup\SettingsController::class, 'emailSetup'])->name('emailSetup');
         });
+
+        Route::name('module.')->prefix('module')->group(function () {
+            Route::get('location', [App\Http\Controllers\Admin\Module\LocationController::class, 'index'])->name('location.index');
+            Route::post('location/add', [App\Http\Controllers\Admin\Module\LocationController::class, 'store'])->name('location.store');
+            Route::get('location/{id}/edit/{slug}', [App\Http\Controllers\Admin\Module\LocationController::class, 'edit'])->name('location.edit');
+            Route::post('location/{id}/edit/{slug}', [App\Http\Controllers\Admin\Module\LocationController::class, 'update'])->name('location.update');
+            Route::delete('location/{id}/delete', [App\Http\Controllers\Admin\Module\LocationController::class, 'delete'])->name('location.delete');
+        });
     });
     
 });

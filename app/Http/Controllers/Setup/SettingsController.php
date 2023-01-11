@@ -15,6 +15,8 @@ class SettingsController extends Controller
         if ($request->isMethod('post')) {
             $validatedData = $request->validate([
                 'app_title' => ['required', 'string'],
+                'admin_data_paginate' => ['required', 'integer'],
+                'frontend_data_paginate' => ['required', 'integer'],
                 'email' => ['nullable', 'email'],
                 'logo' => ['image', 'max:2048'],
                 'short_logo' => ['image', 'max:2048'],
@@ -23,6 +25,8 @@ class SettingsController extends Controller
             // dd($request->all());
             $image_files = ['logo', 'short_logo', 'favicon'];
             $data->app_title = $request->app_title;
+            $data->admin_data_paginate = $request->admin_data_paginate;
+            $data->frontend_data_paginate = $request->frontend_data_paginate;
             $data->email = $request->email;
 
             foreach ($image_files as $image_file) {
