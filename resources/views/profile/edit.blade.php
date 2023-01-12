@@ -40,7 +40,7 @@
                                 <strong>{{ $message }}</strong>
                             </div>
                         @endif
-                        <div class="card animate">
+                        <div class="card">
                             <div class="card-content collpase show">
                                 <div class="card-body">
                                     <form clas="form" action="{{ route('updateProfile')}}" method="post" enctype="multipart/form-data">@csrf

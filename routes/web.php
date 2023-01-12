@@ -41,6 +41,23 @@ Route::group(['middleware' => ['auth']], function(){
             Route::get('location/{id}/edit/{slug}', [App\Http\Controllers\Admin\Module\LocationController::class, 'edit'])->name('location.edit');
             Route::post('location/{id}/edit/{slug}', [App\Http\Controllers\Admin\Module\LocationController::class, 'update'])->name('location.update');
             Route::delete('location/{id}/delete', [App\Http\Controllers\Admin\Module\LocationController::class, 'delete'])->name('location.delete');
+
+            // hotel
+            Route::name('hotel.')->prefix('hotel')->group(function () {
+                Route::get('/', [App\Http\Controllers\Admin\Module\HotelController::class, 'index'])->name('index');
+
+                Route::get('attribute', [App\Http\Controllers\Admin\Core\AttributeController::class, 'index'])->name('attribute.index');
+                Route::post('attribute/create', [App\Http\Controllers\Admin\Core\AttributeController::class, 'store'])->name('attribute.store');
+                Route::get('attribute/{id}/edit', [App\Http\Controllers\Admin\Core\AttributeController::class, 'edit'])->name('attribute.edit');
+                Route::post('attribute/{id}/update', [App\Http\Controllers\Admin\Core\AttributeController::class, 'update'])->name('attribute.update');
+                Route::delete('attribute/{id}/delete', [App\Http\Controllers\Admin\Core\AttributeController::class, 'delete'])->name('attribute.delete');
+                Route::get('attribute/{id}/termList', [App\Http\Controllers\Admin\Core\AttributeController::class, 'termList'])->name('attribute.termList');
+                Route::post('attribute/term/term/create', [App\Http\Controllers\Admin\Core\AttributeController::class, 'termStore'])->name('attribute.termStore');
+                Route::get('attribute/{id}/term/edit', [App\Http\Controllers\Admin\Core\AttributeController::class, 'termEdit'])->name('attribute.termEdit');
+                Route::post('attribute/{id}/term/update', [App\Http\Controllers\Admin\Core\AttributeController::class, 'termUpdate'])->name('attribute.termUpdate');
+                Route::delete('attribute/{id}/term/delete', [App\Http\Controllers\Admin\Core\AttributeController::class, 'termDelete'])->name('attribute.termDelete');
+            });
+
         });
     });
     

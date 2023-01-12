@@ -7,7 +7,7 @@
                 <div class="row breadcrumbs-top">
                     <div class="breadcrumb-wrapper col-12">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route ('home') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route ('admin.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="#">Setup</a></li>
                             <li class="breadcrumb-item active"><a href="#">General Settings</a></li>
                         </ol>

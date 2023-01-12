@@ -1,5 +1,5 @@
 @extends('layouts.back.master')
-@section('title', 'Location')
+@section('title', 'Attribute Term List')
 @section('content')
     <div class="content-wrapper">
         <div class="content-header row">
@@ -8,7 +8,9 @@
                     <div class="breadcrumb-wrapper col-12">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route ('admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active"><a href="{{route ('admin.module.location.index') }}">Location</a></li>
+                            <li class="breadcrumb-item"><a href="{{route ('admin.module.hotel.index') }}">Hotel</a></li>
+                            <li class="breadcrumb-item"><a href="{{route ('admin.module.hotel.attribute.index') }}">Attribute</a></li>
+                            <li class="breadcrumb-item active"><a href="{{route ('admin.module.hotel.attribute.termList',["id"=>$attributeInfo->id]) }}">Attribute : {{$attributeInfo->name}}</a></li>
                         </ol>
                     </div>
                 </div>
@@ -49,13 +51,17 @@
                                 @endif
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title" id="basic-layout-card-center">Add New Location</h4>
+                                        <h4 class="card-title" id="basic-layout-card-center">Add new Attribute: {{$attributeInfo->name}} Term</h4>
                                     </div>
                                     <div class="card-content collapse show">
                                         <div class="card-body">
-                                            <form class="form" action="{{ route ('admin.module.location.store') }}" method="post" enctype="multipart/form-data">@csrf
+                                            <form class="form" action="{{ route ('admin.module.hotel.attribute.termStore') }}" method="post" enctype="multipart/form-data">@csrf
                                                 <div class="form-body">
-                                                    @include('admin.location.form')
+                                                    <div class="form-group">
+                                                        <label for="name">Name<span class="text-danger">*</span></label>
+                                                        <input type="text" id="name" class="form-control" placeholder="name" name="name" value="{{old('name')}}" required>
+                                                        <input type="hidden" name="attribute_id" value="{{$attributeInfo->id}}">
+                                                    </div>
                                                 </div>
         
                                                 <div class="form-actions center">
@@ -76,7 +82,7 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Location List</h4>
+                                        <h4 class="card-title">Attribute: {{$attributeInfo->name}} Term List</h4>
                                     </div>
                                     <div class="card-content collapse show">
                                         <div class="card-body card-dashboard">
@@ -86,9 +92,6 @@
                                                         <tr>
                                                             <th>Sl</th>
                                                             <th>Name</th>
-                                                            <th>Slug</th>
-                                                            <th>Status</th>
-                                                            <th>Date</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -98,16 +101,13 @@
                                                                 <tr>
                                                                     <td>{{++$sl}}</td>
                                                                     <td>{{$data->name}}</td>
-                                                                    <td>{{$data->slug}}</td>
-                                                                    <td>{{$data->status}}</td>
-                                                                    <td>{{App\Helper\DateFormatHelper::dateFormat($data->created_at)}}</td>
                                                                     <td>
-                                                                        <a href="{{ route ('admin.module.location.edit', ['id'=>$data->id, 'slug'=>$data->slug])}}">
+                                                                        <a href="{{ route ('admin.module.hotel.attribute.termEdit', ['id'=>$data->id])}}">
                                                                             <button type="button" title="Edit" class="btn btn-primary btn-sm">
                                                                             <i class="fa fa-pencil-square"></i> Edit</button>
                                                                         </a>
-                                                                        <button type="button" class="btn btn-danger btn-sm" title="Inactive" 
-                                                                            onclick="deleteData('{{ route('admin.module.location.delete', [$data->id]) }}')">
+                                                                        <button type="button" class="btn btn-danger btn-sm" title="Delete" 
+                                                                            onclick="deleteData('{{ route('admin.module.hotel.attribute.termDelete', [$data->id]) }}')">
                                                                             <i class="fa fa-trash" aria-hidden="true"></i> Delete
                                                                         </button>
                                                                     </td>
@@ -119,9 +119,6 @@
                                                         <tr>
                                                             <th>Sl</th>
                                                             <th>Name</th>
-                                                            <th>Slug</th>
-                                                            <th>Status</th>
-                                                            <th>Date</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </tfoot>

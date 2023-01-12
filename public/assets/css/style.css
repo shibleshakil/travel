@@ -178,7 +178,9 @@ body.vertical-layout.vertical-menu.menu-collapsed .navbar .navbar-header {
 	color: #fff;
 }
 
-
+.breadcrumb-item.active a {
+	color: #000;
+}
 
 
 @keyframes fullView {

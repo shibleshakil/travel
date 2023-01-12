@@ -5,16 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Hotel extends Model
+class Attribute extends Model
 {
     use HasFactory;
 
-    protected $table = 'hotels';
+    protected $table = 'attributes';
 
     protected $fillable = [
         'name',
         'slug',
-        'location',
-        'location',
+        'service',
+        'position',
     ];
+
+    public function createdBy(){
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
 }
