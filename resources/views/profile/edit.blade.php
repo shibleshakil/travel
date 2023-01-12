@@ -44,23 +44,14 @@
                             <div class="card-content collpase show">
                                 <div class="card-body">
                                     <form clas="form" action="{{ route('updateProfile')}}" method="post" enctype="multipart/form-data">@csrf
-                                        <div class="media">
-                                            <a href="javascript: void(0);">
-                                                <img src="{{Auth()->user()->image ? asset ('uploads/images/'.Auth()->user()->image) 
-                                                    : asset ('app-assets/images/portrait/small/avatar-s-1.png') }}" 
-                                                    class="rounded mr-75" alt="profile image" height="64" width="64">
-                                            </a>
-                                            <div class="media-body mt-75">
-                                                <div class="col-12 px-0 d-flex flex-sm-row flex-column justify-content-start">
-                                                    <label class="btn btn-sm btn-primary ml-50 mb-50 mb-sm-0 cursor-pointer" for="account-upload">Upload new photo</label>
-                                                    <input type="file" id="account-upload" hidden name="image">
-                                                    <button class="btn btn-sm btn-secondary ml-50">Reset</button>
-                                                </div>
-                                                <p class="text-muted ml-75 mt-50"><small>Allowed JPG, GIF or PNG. Max size of 800kB</small></p>
-                                            </div>
-                                        </div>
-                                        <hr>
                                         <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="image">Profile Image</label>
+                                                    <input type="file" id="input-file-now" name="image" 
+                                                    @if(auth()->user()->image) data-default-file="{{asset ('uploads/images/'. auth()->user()->image)}}" @endif class="dropify" />
+                                                </div>
+                                            </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <div class="controls">
