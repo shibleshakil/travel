@@ -45,6 +45,7 @@ Route::group(['middleware' => ['auth']], function(){
             // hotel
             Route::name('hotel.')->prefix('hotel')->group(function () {
                 Route::get('/', [App\Http\Controllers\Admin\Module\HotelController::class, 'index'])->name('index');
+                Route::get('/create', [App\Http\Controllers\Admin\Module\HotelController::class, 'create'])->name('create');
 
                 Route::get('attribute', [App\Http\Controllers\Admin\Core\AttributeController::class, 'index'])->name('attribute.index');
                 Route::post('attribute/create', [App\Http\Controllers\Admin\Core\AttributeController::class, 'store'])->name('attribute.store');

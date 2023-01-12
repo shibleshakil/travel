@@ -19,11 +19,11 @@
                     <span class="menu-title" data-i18n="Hotel">Hotel</span>
                 </a>
                 <ul class="menu-content">
-                    <li @if ($url == 'admin.setup.appSetting') class="active" @endif>
-                        <a class="menu-item" href="{{ route ('admin.setup.appSetting')}}" data-i18n="All Hotels">All Hotels</a>
+                    <li @if ($url == 'admin.module.hotel.index') class="active" @endif>
+                        <a class="menu-item" href="{{ route ('admin.module.hotel.index')}}" data-i18n="All Hotels">All Hotels</a>
                     </li>
-                    <li @if ($url == 'admin.setup.emailSetup') class="active" @endif>
-                        <a class="menu-item" href="{{ route ('admin.setup.emailSetup')}}" data-i18n="Add New Hotel">Add New Hotel</a>
+                    <li @if ($url == 'admin.module.hotel.create') class="active" @endif>
+                        <a class="menu-item" href="{{ route ('admin.module.hotel.create')}}" data-i18n="Add New Hotel">Add New Hotel</a>
                     </li>
                     <li @if ($url == 'admin.module.hotel.attribute.index' || $url == 'admin.module.hotel.attribute.edit' || 
                     $url == 'admin.module.hotel.attribute.termList' || $url == 'admin.module.hotel.attribute.termEdit') class="active" @endif>
