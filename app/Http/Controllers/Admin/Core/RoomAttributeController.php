@@ -12,53 +12,53 @@ use App\Helper\ImageHelper;
 use App\Helper\PaginateHelper;
 use App\Helper\SlugHelper;
 
-class AttributeController extends Controller
+class RoomAttributeController extends Controller
 {
     public function index(){
-        $datas = Attribute::where('is_active', 1)->where('service', 'hotel')->get()->reverse();
+        $datas = Attribute::where('is_active', 1)->where('service', 'hotel-room')->get()->reverse();
         $sl = 0;
 
-        return view('admin.module.core.attribute.index', compact('datas', 'sl'));
+        return view('admin.module.core.roomAttribute.index', compact('datas', 'sl'));
     }
 
     public function store(Request $request){
         $validatedData = $request->validate([
-            'name' => ['required', 'unique:attributes,name,'.$request->id.',id,service,hotel'],
+            'name' => ['required', 'unique:attributes,name,'.$request->id.',id,service,hotel-room'],
             'position' => ['nullable', 'numeric'],
         ]);
-        $parentName = 'hotel';
+        $parentName = 'hotel-room';
         $data = new Attribute;
         $data->name = $request->name;
         $data->slug = SlugHelper::generateSlug($request->name, $parentName);
-        $data->service = 'hotel';
+        $data->service = 'hotel-room';
         $data->position = $request->position;
         $data->created_by = auth()->user()->id;
         $data->save();
 
-        return back()->with('success', 'New Hotel Attribute Added Successfully!');
+        return back()->with('success', 'New Hotel Room Attribute Added Successfully!');
     }
     
     public function edit($id){
         $data = Attribute::findorFail($id);
 
-        return view('admin.module.core.attribute.details', compact('data'));
+        return view('admin.module.core.roomAttribute.details', compact('data'));
     }
     
     public function update(Request $request, $id){
         $validatedData = $request->validate([
-            'name' => ['required', 'unique:attributes,name,'.$id.',id,service,hotel'],
+            'name' => ['required', 'unique:attributes,name,'.$id.',id,service,hotel-room'],
             'position' => ['nullable', 'numeric'],
         ]);
-        $parentName = 'hotel';
+        $parentName = 'hotel-room';
         $data = Attribute::findorFail($id);
         $data->name = $request->name;
         $data->slug = SlugHelper::generateSlug($request->name, $parentName);
-        $data->service = 'hotel';
+        $data->service = 'hotel-room';
         $data->position = $request->position;
         $data->updated_by = auth()->user()->id;
         $data->save();
 
-        return back()->with('success', 'Hotel Attribute Updated Successfully!');
+        return back()->with('success', 'Hotel Room Attribute Updated Successfully!');
     }
 
     public function delete($id){
@@ -75,7 +75,7 @@ class AttributeController extends Controller
         $datas = AttributeTerm::with('attribute')->where('is_active', 1)->where('attribute_id', $id)->get()->reverse();
         $sl = 0;
 
-        return view('admin.module.core.attribute.termList', compact('attributeInfo', 'datas', 'sl'));
+        return view('admin.module.core.roomAttribute.termList', compact('attributeInfo', 'datas', 'sl'));
     }
 
     public function termStore(Request $request){
@@ -105,7 +105,7 @@ class AttributeController extends Controller
     public function termEdit($id){
         $data = AttributeTerm::findorFail($id);
 
-        return view('admin.module.core.attribute.termDetails', compact('data'));
+        return view('admin.module.core.roomAttribute.termDetails', compact('data'));
     }
     
     public function termUpdate(Request $request, $id){

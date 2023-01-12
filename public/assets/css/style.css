@@ -94,6 +94,7 @@ body.vertical-layout.vertical-menu.menu-collapsed .navbar .navbar-header {
 .table th,
 .table td {
 	vertical-align: middle;
+	text-align: center;
 }
 
 .table td p {
@@ -204,4 +205,12 @@ body.vertical-layout.vertical-menu.menu-collapsed .navbar .navbar-header {
 	to {
 		background-position: 1000px 0;
 	}
+}
+
+.tfont {
+	font-size: 30px;
+}
+
+.timage {
+	width: 30px;
 }

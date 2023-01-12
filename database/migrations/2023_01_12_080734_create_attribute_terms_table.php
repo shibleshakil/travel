@@ -18,6 +18,8 @@ class CreateAttributeTermsTable extends Migration
             $table->string('name')->nullable();
             $table->unsignedBigInteger('attribute_id')->nullable();
             $table->string('slug')->nullable();
+            $table->string('icon')->nullable();
+            $table->string('image')->nullable();
             $table->tinyInteger('is_active')->default(1);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();

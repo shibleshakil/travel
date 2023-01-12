@@ -1,5 +1,5 @@
 @extends('layouts.back.master')
-@section('title', 'Hotel Attribute')
+@section('title', 'Hotel Room Attribute')
 @section('content')
     <div class="content-wrapper">
         <div class="content-header row">
@@ -9,8 +9,8 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route ('admin.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="{{route ('admin.module.hotel.index') }}">Hotel</a></li>
-                            <li class="breadcrumb-item"><a href="{{route ('admin.module.hotel.attribute.index') }}">Attribute</a></li>
-                            <li class="breadcrumb-item"><a href="{{route ('admin.module.hotel.attribute.termList',["id"=>$data->attribute->id]) }}">Attribute : {{$data->attribute->name}}</a></li>
+                            <li class="breadcrumb-item"><a href="{{route ('admin.module.hotel.roomAttribute.index') }}">Room Attribute</a></li>
+                            <li class="breadcrumb-item"><a href="{{route ('admin.module.hotel.roomAttribute.termList',["id"=>$data->attribute->id]) }}">Attribute : {{$data->attribute->name}}</a></li>
                             <li class="breadcrumb-item active"><a href="#">Edit</a></li>
                         </ol>
                     </div>
@@ -53,7 +53,7 @@
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
-                                    <form class="form" action="{{ route ('admin.module.hotel.attribute.termUpdate', ['id'=>$data->id]) }}" method="post" enctype="multipart/form-data">@csrf
+                                    <form class="form" action="{{ route ('admin.module.hotel.roomAttribute.termUpdate', ['id'=>$data->id]) }}" method="post" enctype="multipart/form-data">@csrf
                                         <div class="form-body">
                                             <div class="form-group">
                                                 <label for="name">Name<span class="text-danger">*</span></label>

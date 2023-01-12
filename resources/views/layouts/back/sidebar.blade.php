@@ -29,8 +29,9 @@
                     $url == 'admin.module.hotel.attribute.termList' || $url == 'admin.module.hotel.attribute.termEdit') class="active" @endif>
                         <a class="menu-item" href="{{ route ('admin.module.hotel.attribute.index')}}" data-i18n="Attributes">Attributes</a>
                     </li>
-                    <li @if ($url == 'admin.setup.emailSetup') class="active" @endif>
-                        <a class="menu-item" href="{{ route ('admin.setup.emailSetup')}}" data-i18n="Room Attributes">Room Attributes</a>
+                    <li @if ($url == 'admin.module.hotel.roomAttribute.index' || $url == 'admin.module.hotel.roomAttribute.edit' || 
+                    $url == 'admin.module.hotel.roomAttribute.termList' || $url == 'admin.module.hotel.roomAttribute.termEdit') class="active" @endif>
+                        <a class="menu-item" href="{{ route ('admin.module.hotel.roomAttribute.index')}}" data-i18n="Room Attributes">Room Attributes</a>
                     </li>
                     <li @if ($url == 'admin.setup.emailSetup') class="active" @endif>
                         <a class="menu-item" href="{{ route ('admin.setup.emailSetup')}}" data-i18n="Recovery">Recovery</a>

@@ -1,5 +1,5 @@
 @extends('layouts.back.master')
-@section('title', 'Attribute Term List')
+@section('title', 'Room Attribute Term List')
 @section('content')
     <div class="content-wrapper">
         <div class="content-header row">
@@ -9,8 +9,8 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route ('admin.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="{{route ('admin.module.hotel.index') }}">Hotel</a></li>
-                            <li class="breadcrumb-item"><a href="{{route ('admin.module.hotel.attribute.index') }}">Attribute</a></li>
-                            <li class="breadcrumb-item active"><a href="{{route ('admin.module.hotel.attribute.termList',["id"=>$attributeInfo->id]) }}">Attribute : {{$attributeInfo->name}}</a></li>
+                            <li class="breadcrumb-item"><a href="{{route ('admin.module.hotel.roomAttribute.index') }}">Room Attribute</a></li>
+                            <li class="breadcrumb-item active"><a href="{{route ('admin.module.hotel.roomAttribute.termList',["id"=>$attributeInfo->id]) }}">Attribute : {{$attributeInfo->name}}</a></li>
                         </ol>
                     </div>
                 </div>
@@ -51,11 +51,11 @@
                                 @endif
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title" id="basic-layout-card-center">Add new Attribute: {{$attributeInfo->name}} Term</h4>
+                                        <h4 class="card-title" id="basic-layout-card-center">Add new Room Attribute: {{$attributeInfo->name}} Term</h4>
                                     </div>
                                     <div class="card-content collapse show">
                                         <div class="card-body">
-                                            <form class="form" action="{{ route ('admin.module.hotel.attribute.termStore') }}" method="post" enctype="multipart/form-data">@csrf
+                                            <form class="form" action="{{ route ('admin.module.hotel.roomAttribute.termStore') }}" method="post" enctype="multipart/form-data">@csrf
                                                 <div class="form-body">
                                                     <div class="form-group">
                                                         <label for="name">Name<span class="text-danger">*</span></label>
@@ -94,7 +94,7 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Attribute: {{$attributeInfo->name}} Term List</h4>
+                                        <h4 class="card-title">Room Attribute: {{$attributeInfo->name}} Term List</h4>
                                     </div>
                                     <div class="card-content collapse show">
                                         <div class="card-body card-dashboard">
@@ -118,12 +118,12 @@
                                                                     <td>@if($data->icon)<i class="{{$data->icon}} tfont"></i>@endif</td>
                                                                     <td>@if($data->image)<img src="{{asset('uploads/images/'.$data->image)}}" alt="" class="timage">@endif</td>
                                                                     <td>
-                                                                        <a href="{{ route ('admin.module.hotel.attribute.termEdit', ['id'=>$data->id])}}">
+                                                                        <a href="{{ route ('admin.module.hotel.roomAttribute.termEdit', ['id'=>$data->id])}}">
                                                                             <button type="button" title="Edit" class="btn btn-primary btn-sm">
                                                                             <i class="fa fa-pencil-square"></i> Edit</button>
                                                                         </a>
                                                                         <button type="button" class="btn btn-danger btn-sm" title="Delete" 
-                                                                            onclick="deleteData('{{ route('admin.module.hotel.attribute.termDelete', [$data->id]) }}')">
+                                                                            onclick="deleteData('{{ route('admin.module.hotel.roomAttribute.termDelete', [$data->id]) }}')">
                                                                             <i class="fa fa-trash" aria-hidden="true"></i> Delete
                                                                         </button>
                                                                     </td>
