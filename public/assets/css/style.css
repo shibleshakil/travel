@@ -214,3 +214,34 @@ body.vertical-layout.vertical-menu.menu-collapsed .navbar .navbar-header {
 .timage {
 	width: 30px;
 }
+
+.form-card-header {
+	padding: 14px 20px;
+	border-bottom: 1px solid #dfe4e8;
+	position: relative;
+}
+
+.attribute-terms {
+	overflow-y: auto;
+	background: #f4f6f8;
+	padding: 10px;
+	border: 1px solid #e1e2e5;
+	max-height: 250px;
+}
+
+td input,
+td textarea,
+td select {
+	width: 100%;
+	min-width: 190px;
+}
+
+td input[type="checkbox"] {
+	width: auto;
+	min-width: auto;
+}
+
+.map-div {
+	background: #f4f6f8;
+	min-height: 220px;
+}
