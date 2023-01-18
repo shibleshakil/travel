@@ -245,3 +245,29 @@ td input[type="checkbox"] {
 	background: #f4f6f8;
 	min-height: 220px;
 }
+
+.feature-item {
+	padding: 0px 5px;
+	background: #0857e5;
+	color: #fff;
+	border-radius: 4px;
+}
+
+.draft {
+	padding: 0px 5px;
+	background: #c98014;
+	color: #fff;
+	border-radius: 4px;
+}
+
+.publish {
+	padding: 0px 5px;
+	background: #0fa13c;
+	color: #fff;
+	border-radius: 4px;
+}
+
+.galary-img {
+	width: 100%;
+	height: auto;
+}

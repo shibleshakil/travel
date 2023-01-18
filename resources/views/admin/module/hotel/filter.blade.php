@@ -64,34 +64,15 @@
                                                     @foreach ($datas as $data)
                                                         <tr>
                                                             <td>{{$datas ->perPage()*($datas->currentPage()-1)+$count}}</td>
-                                                            <td>
-                                                                @if ($data->is_feature == 1)
-                                                                    <span class="feature-item">Featured</span>
-                                                                @endif
-                                                                {{$data->name}}
-                                                            </td>
+                                                            <td>{{$data->name}}</td>
                                                             <td>
                                                                 @if ($data->location_id)
                                                                     {{$data->location->name}}{{$data->location->parent ? ', ' . $data->location->parentName->name : ''}}
                                                                 @endif
                                                             </td>
-                                                            <td><span class="@if($data->status == "Draft")draft @elseif($data->status == "Publish")publish @endif">{{$data->status}}</span></td>
+                                                            <td>{{$data->status}}</td>
                                                             <td>{{App\Helper\DateFormatHelper::dateFormat($data->created_at)}}</td>
-                                                            <td>
-                                                                <a href="{{ route ('admin.module.hotel.edit', ['id'=>$data->id])}}">
-                                                                    <button type="button" title="Edit Hotel" class="btn btn-primary btn-sm btn-icon">
-                                                                    <i class="fa fa-pencil-square"></i></button>
-                                                                </a>
-                                                                <a href="#">
-                                                                    <button type="button" title="Manage Rooms" class="btn btn-secondary btn-sm btn-icon">
-                                                                        <i class="fa-solid fa-hotel"></i>
-                                                                    </button>
-                                                                </a>
-                                                                <button type="button" class="btn btn-danger btn-sm btn-icon" title="Delete Hotel" 
-                                                                    onclick="deleteData('{{ route('admin.module.hotel.delete', [$data->id]) }}')">
-                                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                                </button>
-                                                            </td>
+                                                            <td></td>
                                                         </tr>
                                                         <?php $count++; ?>
                                                     @endforeach

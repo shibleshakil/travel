@@ -18,4 +18,16 @@ class ImageHelper
         }
         return $name;
     }
+
+    public static function handleUploadGalaryImage($files, $path)
+    {
+        $fileName = [];
+        foreach ($files as $key => $file) {
+            $name = time() . $file->getClientOriginalName();
+            $file->move(public_path() . $path, $name);
+            array_push($fileName, $name);
+        }
+        
+        return json_encode($fileName);
+    }
 }

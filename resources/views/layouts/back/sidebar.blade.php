@@ -19,7 +19,7 @@
                     <span class="menu-title" data-i18n="Hotel">Hotel</span>
                 </a>
                 <ul class="menu-content">
-                    <li @if ($url == 'admin.module.hotel.index') class="active" @endif>
+                    <li @if ($url == 'admin.module.hotel.index' || $url == 'admin.module.hotel.edit') class="active" @endif>
                         <a class="menu-item" href="{{ route ('admin.module.hotel.index')}}" data-i18n="All Hotels">All Hotels</a>
                     </li>
                     <li @if ($url == 'admin.module.hotel.create') class="active" @endif>
@@ -33,8 +33,8 @@
                     $url == 'admin.module.hotel.roomAttribute.termList' || $url == 'admin.module.hotel.roomAttribute.termEdit') class="active" @endif>
                         <a class="menu-item" href="{{ route ('admin.module.hotel.roomAttribute.index')}}" data-i18n="Room Attributes">Room Attributes</a>
                     </li>
-                    <li @if ($url == 'admin.setup.emailSetup') class="active" @endif>
-                        <a class="menu-item" href="{{ route ('admin.setup.emailSetup')}}" data-i18n="Recovery">Recovery</a>
+                    <li @if ($url == 'admin.module.hotel.recovery') class="active" @endif>
+                        <a class="menu-item" href="{{ route ('admin.module.hotel.recovery')}}" data-i18n="Recovery">Recovery</a>
                     </li>
                 </ul>
             </li>

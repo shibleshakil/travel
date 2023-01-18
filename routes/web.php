@@ -45,8 +45,15 @@ Route::group(['middleware' => ['auth']], function(){
             // hotel
             Route::name('hotel.')->prefix('hotel')->group(function () {
                 Route::get('/', [App\Http\Controllers\Admin\Module\HotelController::class, 'index'])->name('index');
+                Route::get('/search/{name}', [App\Http\Controllers\Admin\Module\HotelController::class, 'search'])->name('search');
                 Route::get('/create', [App\Http\Controllers\Admin\Module\HotelController::class, 'create'])->name('create');
                 Route::post('/create', [App\Http\Controllers\Admin\Module\HotelController::class, 'store'])->name('store');
+                Route::get('/edit/{id}', [App\Http\Controllers\Admin\Module\HotelController::class, 'edit'])->name('edit');
+                Route::post('/edit/{id}', [App\Http\Controllers\Admin\Module\HotelController::class, 'update'])->name('update');
+                Route::delete('/delete/{id}', [App\Http\Controllers\Admin\Module\HotelController::class, 'delete'])->name('delete');
+                Route::get('/recovery', [App\Http\Controllers\Admin\Module\HotelController::class, 'recovery'])->name('recovery');
+                Route::get('recovery/search/{name}', [App\Http\Controllers\Admin\Module\HotelController::class, 'recoverySearch'])->name('recoverySearch');
+                Route::put('/restore/{id}', [App\Http\Controllers\Admin\Module\HotelController::class, 'restore'])->name('restore');
 
                 Route::get('attribute', [App\Http\Controllers\Admin\Core\AttributeController::class, 'index'])->name('attribute.index');
                 Route::post('attribute/create', [App\Http\Controllers\Admin\Core\AttributeController::class, 'store'])->name('attribute.store');

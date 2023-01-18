@@ -9,7 +9,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route ('admin.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="{{route ('admin.module.hotel.index') }}">Hotel</a></li>
-                            <li class="breadcrumb-item active"><a href="#">All Hotels</a></li>
+                            <li class="breadcrumb-item active"><a href="#">Recovery</a></li>
                         </ol>
                     </div>
                 </div>
@@ -24,10 +24,10 @@
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <h4 class="card-title">All Hotels</h4>
+                                        <h4 class="card-title">Recovery</h4>
                                     </div>
                                     <div class="col-lg-6">
-                                        <form id="adminFilterUrl" action="{{route ('admin.module.hotel.search', ["All Data"]) }}" method="get">@csrf
+                                        <form id="adminFilterUrl" action="{{route ('admin.module.hotel.recoverySearch', ["All Data"]) }}" method="get">@csrf
                                             <div class="row justify-content-end">
                                                 <div class="col-lg-6 form-group">
                                                     <input type="text" class="form-control" id="search" placeholder="search by hotel name">
@@ -78,18 +78,9 @@
                                                             <td><span class="@if($data->status == "Draft")draft @elseif($data->status == "Publish")publish @endif">{{$data->status}}</span></td>
                                                             <td>{{App\Helper\DateFormatHelper::dateFormat($data->created_at)}}</td>
                                                             <td>
-                                                                <a href="{{ route ('admin.module.hotel.edit', ['id'=>$data->id])}}">
-                                                                    <button type="button" title="Edit Hotel" class="btn btn-primary btn-sm btn-icon">
-                                                                    <i class="fa fa-pencil-square"></i></button>
-                                                                </a>
-                                                                <a href="#">
-                                                                    <button type="button" title="Manage Rooms" class="btn btn-secondary btn-sm btn-icon">
-                                                                        <i class="fa-solid fa-hotel"></i>
-                                                                    </button>
-                                                                </a>
-                                                                <button type="button" class="btn btn-danger btn-sm btn-icon" title="Delete Hotel" 
-                                                                    onclick="deleteData('{{ route('admin.module.hotel.delete', [$data->id]) }}')">
-                                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                <button type="button" class="btn btn-danger btn-sm btn-icon" title="Recover" 
+                                                                    onclick="restoreData('{{ route('admin.module.hotel.restore', [$data->id]) }}')">
+                                                                    <i class="fa fa-undo" aria-hidden="true"></i>
                                                                 </button>
                                                             </td>
                                                         </tr>
@@ -127,7 +118,7 @@
 @section('script')
     <script type="text/javascript">
         $(document).ready(function(){
-            const filterUrl = "{{url ('admin/module/hotel/search') }}";
+            const filterUrl = "{{url ('admin/module/hotel/recovery/search') }}";
             $("#search").keyup(function(){
                 var searchFor = $(this).val();
                 adminFilterUrlGenerate(filterUrl, searchFor);

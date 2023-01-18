@@ -66,16 +66,12 @@ function restoreData(url) {
                     "_token": $('#csrfToken').val(),
                 },
                 success: function (result) {
-                    toastr.success(
-                        result,
-                        'Reactive!',
-                        {
-                            positionClass: 'toast-top-right',
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut",
-                            timeOut: 2000
-                        }
-                    );
+                    Swal.fire({
+                        title: "Restore",
+                        text: result,
+                        type: "success",
+                        confirmButtonClass: "btn btn-success"
+                    })
                     setTimeout(function () {
                         location.reload();
                     }, 2000);
@@ -93,5 +89,16 @@ function restoreData(url) {
             }, 1000);
         }
     });
+}
+
+// admin filter
+function adminFilterUrlGenerate(url, searchIteam) {
+    if (searchIteam != '') {
+        let filterUrl = url + '/' + searchIteam;
+        $("#adminFilterUrl").attr('action', filterUrl);
+    } else {
+        let filterUrl = url + '/' + "All Data";
+        $("#adminFilterUrl").attr('action', filterUrl);
+    }
 }
 

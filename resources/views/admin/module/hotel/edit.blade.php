@@ -1,5 +1,5 @@
 @extends('layouts.back.master')
-@section('title', 'Add New Hotel')
+@section('title', 'Edit Hotel')
 @section('content')
     <div class="content-wrapper">
         <div class="content-header row">
@@ -9,7 +9,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route ('admin.dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="{{route ('admin.module.hotel.index') }}">Hotel</a></li>
-                            <li class="breadcrumb-item active"><a href="#">Add New Hotel</a></li>
+                            <li class="breadcrumb-item active"><a href="#">Edit Hotel</a></li>
                         </ol>
                     </div>
                 </div>
@@ -47,13 +47,13 @@
                         @endif
                         <div class="row mb-2">
                             <div class="col-md-6">
-                                <h4 class="card-title" id="basic-layout-card-center">Add New Hotel</h4>
+                                <h4 class="card-title" id="basic-layout-card-center">Edit Hotel : {{$data->name}}</h4>
                             </div>
                             <div class="col-md-6 text-right">
                                 <a href="{{route ('admin.module.hotel.index') }}" class="btn btn-info">Hotel List</a>
                             </div>
                         </div>
-                        <form action="{{route ('admin.module.hotel.store') }}" method="post" enctype="multipart/form-data" class="form">@csrf
+                        <form action="{{route ('admin.module.hotel.update', [$data->id]) }}" method="post" enctype="multipart/form-data" class="form">@csrf
                             @include('admin.module.hotel.form')
                         </form>
                     </div>

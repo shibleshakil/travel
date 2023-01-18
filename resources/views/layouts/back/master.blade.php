@@ -96,7 +96,7 @@
     <script src="{{ asset ('app-assets/js/core/app.js')}}"></script>
     <script src="{{ asset ('assets/js/datatable.js?v1.1')}}"></script>
     <script src="{{ asset ('assets/js/dropify-init.js?v1.1')}}"></script>
-    <script src="{{ asset ('assets/js/common.js?v1.1')}}"></script>
+    <script src="{{ asset ('assets/js/common.js?v1.4')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
     <!-- END: Theme JS-->
     <!-- BEGIN: Page JS-->
