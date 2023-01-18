@@ -48,7 +48,7 @@
                         @endif
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title" id="basic-layout-card-center">Edit {{$data->name}}</h4>
+                                <h4 class="card-title" id="basic-layout-card-center">Edit Attribute: {{$data->name}}</h4>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">

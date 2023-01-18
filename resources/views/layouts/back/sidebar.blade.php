@@ -14,7 +14,7 @@
                 </a>
             </li>
             
-            <li class=" nav-item">
+            <li @if ($url == 'admin.module.hotel.room.index' || $url == 'admin.module.hotel.room.edit') class="nav-item open active" @else class="nav-item" @endif>
                 <a href="#"><i class="fa-solid fa-building"></i>
                     <span class="menu-title" data-i18n="Hotel">Hotel</span>
                 </a>

@@ -82,7 +82,7 @@
                                                                     <button type="button" title="Edit Hotel" class="btn btn-primary btn-sm btn-icon">
                                                                     <i class="fa fa-pencil-square"></i></button>
                                                                 </a>
-                                                                <a href="#">
+                                                                <a href="{{ route ('admin.module.hotel.room.index', ['id'=>$data->id])}}">
                                                                     <button type="button" title="Manage Rooms" class="btn btn-secondary btn-sm btn-icon">
                                                                         <i class="fa-solid fa-hotel"></i>
                                                                     </button>

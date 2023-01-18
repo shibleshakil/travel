@@ -72,7 +72,21 @@
                                                             </td>
                                                             <td>{{$data->status}}</td>
                                                             <td>{{App\Helper\DateFormatHelper::dateFormat($data->created_at)}}</td>
-                                                            <td></td>
+                                                            <td>
+                                                                <a href="{{ route ('admin.module.hotel.edit', ['id'=>$data->id])}}">
+                                                                    <button type="button" title="Edit Hotel" class="btn btn-primary btn-sm btn-icon">
+                                                                    <i class="fa fa-pencil-square"></i></button>
+                                                                </a>
+                                                                <a href="{{ route ('admin.module.hotel.room.index', ['id'=>$data->id])}}">
+                                                                    <button type="button" title="Manage Rooms" class="btn btn-secondary btn-sm btn-icon">
+                                                                        <i class="fa-solid fa-hotel"></i>
+                                                                    </button>
+                                                                </a>
+                                                                <button type="button" class="btn btn-danger btn-sm btn-icon" title="Delete Hotel" 
+                                                                    onclick="deleteData('{{ route('admin.module.hotel.delete', [$data->id]) }}')">
+                                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                </button>
+                                                            </td>
                                                         </tr>
                                                         <?php $count++; ?>
                                                     @endforeach

@@ -50,6 +50,7 @@
                                 <h4 class="card-title" id="basic-layout-card-center">Edit Hotel : {{$data->name}}</h4>
                             </div>
                             <div class="col-md-6 text-right">
+                                <a href="{{ route ('admin.module.hotel.room.index', ['id'=>$data->id])}}" class="btn btn-primary"><i class="fa fa-hand-o-right"></i> Manage Room</a>
                                 <a href="{{route ('admin.module.hotel.index') }}" class="btn btn-info">Hotel List</a>
                             </div>
                         </div>
