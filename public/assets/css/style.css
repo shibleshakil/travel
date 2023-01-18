@@ -247,24 +247,23 @@ td input[type="checkbox"] {
 }
 
 .feature-item {
-	padding: 0px 5px;
-	background: #0857e5;
+	background: #007bff;
 	color: #fff;
-	border-radius: 4px;
 }
 
 .draft {
-	padding: 0px 5px;
-	background: #c98014;
+	background: #6c757d;
 	color: #fff;
-	border-radius: 4px;
 }
 
 .publish {
-	padding: 0px 5px;
-	background: #0fa13c;
+	background: #28a745;
 	color: #fff;
-	border-radius: 4px;
+}
+
+.pending {
+	background: #ffc107;
+	color: #fff;
 }
 
 .galary-img {

@@ -42,7 +42,7 @@
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset ('assets/css/style.css?v1.1')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset ('assets/css/style.css?v1.2')}}">
     <!-- END: Custom CSS-->
 
 </head>

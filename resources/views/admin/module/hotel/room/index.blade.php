@@ -99,6 +99,7 @@
                                                             <th>Name</th>
                                                             <th>Number</th>
                                                             <th>Price</th>
+                                                            <th>Status</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -110,6 +111,10 @@
                                                                     <td>{{$data->name}}</td>
                                                                     <td>{{$data->number ? $data->number : 0}}</td>
                                                                     <td>{{$data->price ? $data->price : 0}}</td>
+                                                                    <td>
+                                                                        <span class="badge @if($data->status == "Draft")draft @elseif($data->status == "Publish")publish 
+                                                                            @elseif($data->status == "Pending")pending @endif">{{$data->status}}</span>
+                                                                    </td>
                                                                     <td>
                                                                         <a href="{{ route ('admin.module.hotel.room.edit', ['hotel'=>$data->hotel_id, 'id'=>$data->id])}}">
                                                                             <button type="button" title="Edit" class="btn btn-primary btn-sm">
@@ -130,6 +135,7 @@
                                                             <th>Name</th>
                                                             <th>Number</th>
                                                             <th>Price</th>
+                                                            <th>Status</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </tfoot>

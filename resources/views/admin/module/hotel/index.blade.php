@@ -18,31 +18,29 @@
         <div class="content-body">
             <!-- Column selectors table -->
             <section id="column-selectors">
+                <div class="row mb-2">
+                    <div class="col-lg-6">
+                        <h4 class="card-title">All Hotels</h4>
+                    </div>
+                    <div class="col-lg-6">
+                        <form id="adminFilterUrl" action="{{route ('admin.module.hotel.search', ["All Data"]) }}" method="get">@csrf
+                            <div class="row justify-content-end">
+                                <div class="col-lg-6 form-group">
+                                    <input type="text" class="form-control" id="search" placeholder="search by hotel name">
+                                </div>
+                                <div class="col-lg-2 form-group">
+                                    <button type="submit" class="btn btn-primary" id="btnFilter"> <i class="fa fa-search"></i> Search </button>
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <a href="{{route ('admin.module.hotel.create') }}" class="btn btn-info">Create New Hotel</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <h4 class="card-title">All Hotels</h4>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <form id="adminFilterUrl" action="{{route ('admin.module.hotel.search', ["All Data"]) }}" method="get">@csrf
-                                            <div class="row justify-content-end">
-                                                <div class="col-lg-6 form-group">
-                                                    <input type="text" class="form-control" id="search" placeholder="search by hotel name">
-                                                </div>
-                                                <div class="col-lg-2 form-group">
-                                                    <button type="submit" class="btn btn-primary" id="btnFilter"> <i class="fa fa-search"></i> Search </button>
-                                                </div>
-                                                <div class="col-lg-3 form-group">
-                                                    <a href="{{route ('admin.module.hotel.create') }}" class="btn btn-info">Create New Hotel</a>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="card-content collapse show">
                                 <div class="card-body card-dashboard">
                                     <div class="table-responsive">
@@ -66,7 +64,7 @@
                                                             <td>{{$datas ->perPage()*($datas->currentPage()-1)+$count}}</td>
                                                             <td>
                                                                 @if ($data->is_feature == 1)
-                                                                    <span class="feature-item">Featured</span>
+                                                                    <span class="badge feature-item">Featured</span>
                                                                 @endif
                                                                 {{$data->name}}
                                                             </td>
@@ -75,7 +73,7 @@
                                                                     {{$data->location->name}}{{$data->location->parent ? ', ' . $data->location->parentName->name : ''}}
                                                                 @endif
                                                             </td>
-                                                            <td><span class="@if($data->status == "Draft")draft @elseif($data->status == "Publish")publish @endif">{{$data->status}}</span></td>
+                                                            <td><span class="badge @if($data->status == "Draft")draft @elseif($data->status == "Publish")publish @endif">{{$data->status}}</span></td>
                                                             <td>{{App\Helper\DateFormatHelper::dateFormat($data->created_at)}}</td>
                                                             <td>
                                                                 <a href="{{ route ('admin.module.hotel.edit', ['id'=>$data->id])}}">
