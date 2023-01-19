@@ -60,6 +60,27 @@
                 </ul>
             </li>
             
+            <li class="nav-item">
+                <a href="#"><i class="fa-solid fa-ship"></i>
+                    <span class="menu-title" data-i18n="Car">Car</span>
+                </a>
+                <ul class="menu-content">
+                    <li @if ($url == 'admin.module.car.index' || $url == 'admin.module.car.edit') class="active" @endif>
+                        <a class="menu-item" href="{{ route ('admin.module.car.index')}}" data-i18n="All Cars">All Cars</a>
+                    </li>
+                    <li @if ($url == 'admin.module.car.create') class="active" @endif>
+                        <a class="menu-item" href="{{ route ('admin.module.car.create')}}" data-i18n="Add New Car">Add New Car</a>
+                    </li>
+                    <li @if ($url == 'admin.module.car.attribute.index' || $url == 'admin.module.car.attribute.edit' || 
+                    $url == 'admin.module.car.attribute.termList' || $url == 'admin.module.car.attribute.termEdit') class="active" @endif>
+                        <a class="menu-item" href="{{ route ('admin.module.car.attribute.index')}}" data-i18n="Attributes">Attributes</a>
+                    </li>
+                    <li @if ($url == 'admin.module.car.recovery') class="active" @endif>
+                        <a class="menu-item" href="{{ route ('admin.module.car.recovery')}}" data-i18n="Recovery">Recovery</a>
+                    </li>
+                </ul>
+            </li>
+            
             <li class=" nav-item">
                 <a href="#"><i class="fa-solid fa-gear"></i>
                     <span class="menu-title" data-i18n="Setup">Setup</span>

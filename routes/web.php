@@ -92,7 +92,7 @@ Route::group(['middleware' => ['auth']], function(){
                 });
             });
 
-            // hotel
+            // boat
             Route::name('boat.')->prefix('boat')->group(function () {
                 Route::get('/', [App\Http\Controllers\Admin\Module\Boat\BoatController::class, 'index'])->name('index');
                 Route::get('/search/{name}', [App\Http\Controllers\Admin\Module\Boat\BoatController::class, 'search'])->name('search');
@@ -116,6 +116,33 @@ Route::group(['middleware' => ['auth']], function(){
                     Route::get('/{id}/term/edit', [App\Http\Controllers\Admin\Module\Boat\AttributeController::class, 'termEdit'])->name('termEdit');
                     Route::post('/{id}/term/update', [App\Http\Controllers\Admin\Module\Boat\AttributeController::class, 'termUpdate'])->name('termUpdate');
                     Route::delete('/{id}/term/delete', [App\Http\Controllers\Admin\Module\Boat\AttributeController::class, 'termDelete'])->name('termDelete');
+                });
+            });
+
+            // car
+            Route::name('car.')->prefix('car')->group(function () {
+                Route::get('/', [App\Http\Controllers\Admin\Module\Car\CarController::class, 'index'])->name('index');
+                Route::get('/search/{name}', [App\Http\Controllers\Admin\Module\Car\CarController::class, 'search'])->name('search');
+                Route::get('/create', [App\Http\Controllers\Admin\Module\Car\CarController::class, 'create'])->name('create');
+                Route::post('/create', [App\Http\Controllers\Admin\Module\Car\CarController::class, 'store'])->name('store');
+                Route::get('/edit/{id}', [App\Http\Controllers\Admin\Module\Car\CarController::class, 'edit'])->name('edit');
+                Route::post('/edit/{id}', [App\Http\Controllers\Admin\Module\Car\CarController::class, 'update'])->name('update');
+                Route::delete('/delete/{id}', [App\Http\Controllers\Admin\Module\Car\CarController::class, 'delete'])->name('delete');
+                Route::get('/recovery', [App\Http\Controllers\Admin\Module\Car\CarController::class, 'recovery'])->name('recovery');
+                Route::get('recovery/search/{name}', [App\Http\Controllers\Admin\Module\Car\CarController::class, 'recoverySearch'])->name('recoverySearch');
+                Route::put('/restore/{id}', [App\Http\Controllers\Admin\Module\Car\CarController::class, 'restore'])->name('restore');
+
+                Route::name('attribute.')->prefix('attribute')->group(function () {
+                    Route::get('/', [App\Http\Controllers\Admin\Module\Car\AttributeController::class, 'index'])->name('index');
+                    Route::post('/create', [App\Http\Controllers\Admin\Module\Car\AttributeController::class, 'store'])->name('store');
+                    Route::get('/{id}/edit', [App\Http\Controllers\Admin\Module\Car\AttributeController::class, 'edit'])->name('edit');
+                    Route::post('/{id}/update', [App\Http\Controllers\Admin\Module\Car\AttributeController::class, 'update'])->name('update');
+                    Route::delete('/{id}/delete', [App\Http\Controllers\Admin\Module\Car\AttributeController::class, 'delete'])->name('delete');
+                    Route::get('/{id}/termList', [App\Http\Controllers\Admin\Module\Car\AttributeController::class, 'termList'])->name('termList');
+                    Route::post('/term/term/create', [App\Http\Controllers\Admin\Module\Car\AttributeController::class, 'termStore'])->name('termStore');
+                    Route::get('/{id}/term/edit', [App\Http\Controllers\Admin\Module\Car\AttributeController::class, 'termEdit'])->name('termEdit');
+                    Route::post('/{id}/term/update', [App\Http\Controllers\Admin\Module\Car\AttributeController::class, 'termUpdate'])->name('termUpdate');
+                    Route::delete('/{id}/term/delete', [App\Http\Controllers\Admin\Module\Car\AttributeController::class, 'termDelete'])->name('termDelete');
                 });
             });
 

@@ -1,48 +1,48 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Module\Boat;
+namespace App\Http\Controllers\Admin\Module\Car;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
 use App\Models\Location;
-use App\Models\Boat;
-use App\Models\BoatTerm;
+use App\Models\Car;
+use App\Models\CarTerm;
 use App\Models\Attribute;
 use App\Models\AttributeTerm;
 use App\Helper\ImageHelper;
 use App\Helper\PaginateHelper;
 use App\Helper\SlugHelper;
 
-class BoatController extends Controller
+class CarController extends Controller
 {
     public function index(){
-        $datas = Boat::with('location')->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
-        return view('admin.module.boat.index', compact('datas'));
+        $datas = Car::with('location')->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+        return view('admin.module.car.index', compact('datas'));
     }
 
     public function search($name){
         if ($name == "All Data") {
-            $datas = Boat::with('location')->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Car::with('location')->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }else{
-            $datas = Boat::with('location')->where('is_active', 1)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Car::with('location')->where('is_active', 1)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }
-        return view('admin.module.boat.filter', compact('datas', 'name'));
+        return view('admin.module.car.filter', compact('datas', 'name'));
     }
 
     public function recovery(){
-        $datas = Boat::with('location')->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
-        return view('admin.module.boat.recovery', compact('datas'));
+        $datas = Car::with('location')->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+        return view('admin.module.car.recovery', compact('datas'));
     }
 
     public function recoverySearch($name){
         if ($name == "All Data") {
-            $datas = Boat::with('location')->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Car::with('location')->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }else{
-            $datas = Boat::with('location')->where('is_active', 0)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Car::with('location')->where('is_active', 0)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }
-        return view('admin.module.boat.recovery_filter', compact('datas', 'name'));
+        return view('admin.module.car.recovery_filter', compact('datas', 'name'));
     }
 
     public function create(){
@@ -52,17 +52,17 @@ class BoatController extends Controller
             return $query->where('is_active', 1)->where('service', 'boat');
         })->get();
 
-        return view('admin.module.boat.create', compact('locations', 'attributes', 'attributeTerm'));
+        return view('admin.module.car.create', compact('locations', 'attributes', 'attributeTerm'));
     }
 
     public function edit($id){
-        $data = Boat::findorFail($id);
+        $data = Car::findorFail($id);
         $data->faqs = json_decode($data->faqs);
         $data->spec = json_decode($data->spec);
         $data->extra_price = json_decode($data->extra_price);
         $data->galary_image = json_decode($data->galary_image);
-        $boatTerms = BoatTerm::where('boat_id', $id)->select('term_id')->get()->toArray();
-        $boatTerms = array_column($boatTerms, 'term_id');
+        $carTerms = CarTerm::where('car_id', $id)->select('term_id')->get()->toArray();
+        $carTerms = array_column($carTerms, 'term_id');
 
         $locations = Location::where('is_active', 1)->orderBy('name')->get();
         $attributes = Attribute::where('is_active', 1)->where('service', 'boat')->orderBy('position')->get();
@@ -70,7 +70,7 @@ class BoatController extends Controller
             return $query->where('is_active', 1)->where('service', 'boat');
         })->get();
         
-        return view('admin.module.boat.edit', compact('data', 'boatTerms', 'locations', 'attributes', 'attributeTerm'));
+        return view('admin.module.car.edit', compact('data', 'carTerms', 'locations', 'attributes', 'attributeTerm'));
     }
 
     public function store(Request $request){
@@ -81,7 +81,7 @@ class BoatController extends Controller
             $slug = SlugHelper::generateSlug($request->name, $parentName);
     
             if (!empty($slug)) {
-                $chkSlug = Boat::where('slug', $slug)->count();
+                $chkSlug = Car::where('slug', $slug)->count();
     
                 if ($chkSlug > 0) {
                     $slug = $slug . '-' . $chkSlug;
@@ -103,18 +103,6 @@ class BoatController extends Controller
             }
     
             $allfaqs = json_encode($reqfaqs);
-
-            $reqspec = array();
-            if (sizeof($request->spec_title)) {
-                foreach ($request->spec_title as $key => $value) {
-                    $reqspec[] = [
-                        'spec_title' => $value,
-                        'spec_content' => $request->spec_content[$key] ? $request->spec_content[$key] : NULL,
-                    ];
-                }
-            }
-    
-            $allspec = json_encode($reqspec);
     
             $reqExtraPrice = array();
             if (sizeof($request->extra_price_name)) {
@@ -132,26 +120,24 @@ class BoatController extends Controller
             $data = new Boat;
             $data->slug = $slug;
             $data->faqs = $allfaqs;
-            $data->spec = $allspec;
             $data->extra_price = $extraPrice;
 
             $data->name = $request->name;
             $data->location_id = $request->location_id;
             $data->content = $request->content;
             $data->youtube_link = $request->youtube_link;
-            $data->guest = $request->guest;
-            $data->cabin = $request->cabin;
-            $data->length = $request->length;
-            $data->speed = $request->speed;
-            $data->cancelation_policy = $request->cancelation_policy;
-            $data->additional_terms = $request->additional_terms;
+            $data->passenger = $request->passenger;
+            $data->gear_shift = $request->gear_shift;
+            $data->baggage = $request->baggage;
+            $data->Door = $request->Door;
             $data->address = $request->address;
             $data->map_lat = $request->map_lat;
             $data->map_lng = $request->map_lng;
             $data->map_zoom = $request->map_zoom;
-            $data->hourly_price = $request->hourly_price;
-            $data->daily_price = $request->daily_price;
+            $data->price = $request->price;
+            $data->sale_price = $request->sale_price;
             $data->min_day_before_booking = $request->min_day_before_booking;
+            $data->min_day_stay = $request->min_day_stay;
             $data->enable_extra_price = $request->enable_extra_price;
             $data->status = $request->status;
             $data->default_state = $request->default_state;
@@ -173,11 +159,11 @@ class BoatController extends Controller
             $data->save();
             
             if ($terms = $request->term_id) {    
-                $term = $this->boatTerm($terms, $data, $loggedUser);
+                $term = $this->carTerm($terms, $data, $loggedUser);
             }
 
             DB::commit();
-            return back()->with('success', 'New Boat Added Successfully!');
+            return back()->with('success', 'New Car Added Successfully!');
         } catch (\Throwable $th) {
             DB::rollback();
             return back()->with('error', $th->getMessage());
@@ -193,7 +179,7 @@ class BoatController extends Controller
             $slug = SlugHelper::generateSlug($request->name, $parentName);
     
             if (!empty($slug)) {
-                $chkSlug = Boat::where('slug', $slug)->count();
+                $chkSlug = Car::where('slug', $slug)->count();
     
                 if ($chkSlug > 0) {
                     $slug = $slug . '-' . $chkSlug;
@@ -215,18 +201,6 @@ class BoatController extends Controller
             }
     
             $allfaqs = json_encode($reqfaqs);
-
-            $reqspec = array();
-            if (sizeof($request->spec_title)) {
-                foreach ($request->spec_title as $key => $value) {
-                    $reqspec[] = [
-                        'spec_title' => $value,
-                        'spec_content' => $request->spec_content[$key] ? $request->spec_content[$key] : NULL,
-                    ];
-                }
-            }
-    
-            $allspec = json_encode($reqspec);
     
             $reqExtraPrice = array();
             if (sizeof($request->extra_price_name)) {
@@ -241,29 +215,27 @@ class BoatController extends Controller
     
             $extraPrice = json_encode($reqExtraPrice);
     
-            $data = Boat::findorFail($id);
+            $data = Car::findorFail($id);
             $data->slug = $slug;
             $data->faqs = $allfaqs;
-            $data->spec = $allspec;
             $data->extra_price = $extraPrice;
-            
+
             $data->name = $request->name;
             $data->location_id = $request->location_id;
             $data->content = $request->content;
             $data->youtube_link = $request->youtube_link;
-            $data->guest = $request->guest;
-            $data->cabin = $request->cabin;
-            $data->length = $request->length;
-            $data->speed = $request->speed;
-            $data->cancelation_policy = $request->cancelation_policy;
-            $data->additional_terms = $request->additional_terms;
+            $data->passenger = $request->passenger;
+            $data->gear_shift = $request->gear_shift;
+            $data->baggage = $request->baggage;
+            $data->Door = $request->Door;
             $data->address = $request->address;
             $data->map_lat = $request->map_lat;
             $data->map_lng = $request->map_lng;
             $data->map_zoom = $request->map_zoom;
-            $data->hourly_price = $request->hourly_price;
-            $data->daily_price = $request->daily_price;
+            $data->price = $request->price;
+            $data->sale_price = $request->sale_price;
             $data->min_day_before_booking = $request->min_day_before_booking;
+            $data->min_day_stay = $request->min_day_stay;
             $data->enable_extra_price = $request->enable_extra_price;
             $data->status = $request->status;
             $data->default_state = $request->default_state;
@@ -283,13 +255,13 @@ class BoatController extends Controller
             $data->is_active = 1;
             $data->updated_by = $loggedUser;
             $data->save();
-            
+
             if ($terms = $request->term_id) {    
-                $term = $this->boatTerm($terms, $data, $loggedUser);
+                $term = $this->carTerm($terms, $data, $loggedUser);
             }
 
             DB::commit();
-            return back()->with('success', 'Boat Information Updated Successfully!');
+            return back()->with('success', 'Car Information Updated Successfully!');
         } catch (\Throwable $th) {
             DB::rollback();
             return back()->with('error', $th->getMessage());
@@ -297,12 +269,12 @@ class BoatController extends Controller
         }
     }
 
-    public function boatTerm($terms, $boat, $loggedUser){
-        $deleteExist = DB::select('DELETE FROM boat_terms WHERE boat_id ='.$boat->id.' ');
+    public function carTerm($terms, $car, $loggedUser){
+        $deleteExist = DB::select('DELETE FROM car_terms WHERE car_id ='.$car->id.' ');
 
         foreach ($terms as $key => $termId) {
-            $term = new BoatTerm;
-            $term->boat_id = $boat->id;
+            $term = new CarTerm;
+            $term->car_id = $car->id;
             $term->term_id = $termId;
             $term->created_by = $loggedUser;
             $term->save();
@@ -311,7 +283,7 @@ class BoatController extends Controller
     }
 
     public function delete($id){
-        $data = Boat::findorFail($id);
+        $data = Car::findorFail($id);
         $data->is_active = 0;
         $data->deleted_by = auth()->user()->id;
         $data->deleted_at = date('Y-m-d H:i:s');
@@ -321,7 +293,7 @@ class BoatController extends Controller
     }
 
     public function restore($id){
-        $data = Boat::findorFail($id);
+        $data = Car::findorFail($id);
         $data->is_active = 1;
         $data->updated_by = auth()->user()->id;
         $data->save();
