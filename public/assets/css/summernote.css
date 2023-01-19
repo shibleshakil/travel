@@ -678,3 +678,7 @@
     background-color: #428bca;
     outline: 0
 }
+
+.note-toolbar {
+    border: 1px solid #ccc;
+}

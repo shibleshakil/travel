@@ -42,7 +42,7 @@
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset ('assets/css/style.css?v1.2')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset ('assets/css/style.css?v1.3')}}">
     <!-- END: Custom CSS-->
 
 </head>
@@ -111,6 +111,19 @@
         $(".select2").select2();
         $('.summernote').summernote({
             placeholder: '',
+            blockquoteBreakingLevel: 2,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['fontsize', ['fontsize']],
+                ['height', ['height']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']],
+            ],
             tabsize: 2,
             minHeight: 150
         });
