@@ -26,13 +26,13 @@ class CreateHotelsTable extends Migration
             $table->string('check_out_time')->nullable();
             $table->string('min_day_before_booking')->nullable();
             $table->string('min_day_stays')->nullable();
-            $table->string('price')->nullable();
+            $table->double('price')->nullable();
             $table->string('enable_extra_price')->nullable();
             $table->longText('extra_price')->nullable();
             $table->string('address')->nullable();
             $table->string('map_lat', 20)->nullable();
             $table->string('map_lng', 20)->nullable();
-            $table->tinyInteger('map_zoom')->default(8);
+            $table->tinyInteger('map_zoom')->nullable();
             $table->string('status', 50)->nullable();
             $table->tinyInteger('is_feature')->nullable();
             $table->string('feature_image')->nullable();

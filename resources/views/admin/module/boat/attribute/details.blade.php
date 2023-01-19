@@ -1,5 +1,5 @@
 @extends('layouts.back.master')
-@section('title', 'Hotel Room Attribute')
+@section('title', 'Boat Attribute')
 @section('content')
     <div class="content-wrapper">
         <div class="content-header row">
@@ -8,8 +8,8 @@
                     <div class="breadcrumb-wrapper col-12">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route ('admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{route ('admin.module.hotel.index') }}">Hotel</a></li>
-                            <li class="breadcrumb-item"><a href="{{route ('admin.module.hotel.roomAttribute.index') }}">Room Attribute</a></li>
+                            <li class="breadcrumb-item"><a href="{{route ('admin.module.boat.index') }}">Boat</a></li>
+                            <li class="breadcrumb-item"><a href="{{route ('admin.module.boat.attribute.index') }}">Attribute</a></li>
                             <li class="breadcrumb-item active"><a href="#">Edit</a></li>
                         </ol>
                     </div>
@@ -48,13 +48,13 @@
                         @endif
                         <div class="card">
                             <div class="form-card-header">
-                                <h4 class="card-title" id="basic-layout-card-center">Edit Attribute: {{$data->name}}</h4>
+                                <h4 class="card-title" id="basic-layout-card-center">Edit {{$data->name}}</h4>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
-                                    <form class="form" action="{{ route ('admin.module.hotel.roomAttribute.update', ['id'=>$data->id]) }}" method="post" enctype="multipart/form-data">@csrf
+                                    <form class="form" action="{{ route ('admin.module.boat.attribute.update', ['id'=>$data->id]) }}" method="post" enctype="multipart/form-data">@csrf
                                         <div class="form-body">
-                                            @include('admin.module.core.roomAttribute.form')
+                                            @include('admin.module.core.attribute.form')
                                         </div>
 
                                         <div class="form-actions center">

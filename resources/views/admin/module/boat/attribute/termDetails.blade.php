@@ -1,5 +1,5 @@
 @extends('layouts.back.master')
-@section('title', 'Hotel Room Attribute')
+@section('title', 'Boat Attribute')
 @section('content')
     <div class="content-wrapper">
         <div class="content-header row">
@@ -8,8 +8,9 @@
                     <div class="breadcrumb-wrapper col-12">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route ('admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{route ('admin.module.hotel.index') }}">Hotel</a></li>
-                            <li class="breadcrumb-item"><a href="{{route ('admin.module.hotel.roomAttribute.index') }}">Room Attribute</a></li>
+                            <li class="breadcrumb-item"><a href="{{route ('admin.module.boat.index') }}">Boat</a></li>
+                            <li class="breadcrumb-item"><a href="{{route ('admin.module.boat.attribute.index') }}">Attribute</a></li>
+                            <li class="breadcrumb-item"><a href="{{route ('admin.module.boat.attribute.termList',["id"=>$data->attribute->id]) }}">Attribute : {{$data->attribute->name}}</a></li>
                             <li class="breadcrumb-item active"><a href="#">Edit</a></li>
                         </ol>
                     </div>
@@ -48,13 +49,30 @@
                         @endif
                         <div class="card">
                             <div class="form-card-header">
-                                <h4 class="card-title" id="basic-layout-card-center">Edit Attribute: {{$data->name}}</h4>
+                                <h4 class="card-title" id="basic-layout-card-center">Edit {{$data->name}}</h4>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
-                                    <form class="form" action="{{ route ('admin.module.hotel.roomAttribute.update', ['id'=>$data->id]) }}" method="post" enctype="multipart/form-data">@csrf
+                                    <form class="form" action="{{ route ('admin.module.boat.attribute.termUpdate', ['id'=>$data->id]) }}" method="post" enctype="multipart/form-data">@csrf
                                         <div class="form-body">
-                                            @include('admin.module.core.roomAttribute.form')
+                                            <div class="form-group">
+                                                <label for="name">Name<span class="text-danger">*</span></label>
+                                                <input type="text" id="name" class="form-control" placeholder="name" name="name" value="{{$data->name}}" required>
+                                                <input type="hidden" name="attribute_id" value="{{$data->attribute_id}}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="icon">Icon Class - get icon in 
+                                                    <a href="http://fontawesome.com" target="_blank" rel="noopener noreferrer">fontawesome.com</a> or 
+                                                    <a href="http://icofont.com" target="_blank" rel="noopener noreferrer">icofont.com</a>
+                                                </label>
+                                                <input type="text" id="icon" class="form-control" placeholder="Ex: fa fa-google" name="icon" value="{{$data->icon}}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="image">Upload Image size 30px</label>
+                                                <input type="file" id="input-file-now" name="image" 
+                                                @if($data->image) data-default-file="{{asset ('uploads/images/'. $data->image)}}" @endif class="dropify" />
+                                                <p class="font-italic">All the Term's image are same size</p>
+                                            </div>
                                         </div>
 
                                         <div class="form-actions center">

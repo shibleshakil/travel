@@ -94,41 +94,28 @@ Route::group(['middleware' => ['auth']], function(){
 
             // hotel
             Route::name('boat.')->prefix('boat')->group(function () {
-                Route::get('/', [App\Http\Controllers\Admin\Module\Hotel\HotelController::class, 'index'])->name('index');
-                Route::get('/search/{name}', [App\Http\Controllers\Admin\Module\Hotel\HotelController::class, 'search'])->name('search');
-                Route::get('/create', [App\Http\Controllers\Admin\Module\Hotel\HotelController::class, 'create'])->name('create');
-                Route::post('/create', [App\Http\Controllers\Admin\Module\Hotel\HotelController::class, 'store'])->name('store');
-                Route::get('/edit/{id}', [App\Http\Controllers\Admin\Module\Hotel\HotelController::class, 'edit'])->name('edit');
-                Route::post('/edit/{id}', [App\Http\Controllers\Admin\Module\Hotel\HotelController::class, 'update'])->name('update');
-                Route::delete('/delete/{id}', [App\Http\Controllers\Admin\Module\Hotel\HotelController::class, 'delete'])->name('delete');
-                Route::get('/recovery', [App\Http\Controllers\Admin\Module\Hotel\HotelController::class, 'recovery'])->name('recovery');
-                Route::get('recovery/search/{name}', [App\Http\Controllers\Admin\Module\Hotel\HotelController::class, 'recoverySearch'])->name('recoverySearch');
-                Route::put('/restore/{id}', [App\Http\Controllers\Admin\Module\Hotel\HotelController::class, 'restore'])->name('restore');
+                Route::get('/', [App\Http\Controllers\Admin\Module\Boat\BoatController::class, 'index'])->name('index');
+                Route::get('/search/{name}', [App\Http\Controllers\Admin\Module\Boat\BoatController::class, 'search'])->name('search');
+                Route::get('/create', [App\Http\Controllers\Admin\Module\Boat\BoatController::class, 'create'])->name('create');
+                Route::post('/create', [App\Http\Controllers\Admin\Module\Boat\BoatController::class, 'store'])->name('store');
+                Route::get('/edit/{id}', [App\Http\Controllers\Admin\Module\Boat\BoatController::class, 'edit'])->name('edit');
+                Route::post('/edit/{id}', [App\Http\Controllers\Admin\Module\Boat\BoatController::class, 'update'])->name('update');
+                Route::delete('/delete/{id}', [App\Http\Controllers\Admin\Module\Boat\BoatController::class, 'delete'])->name('delete');
+                Route::get('/recovery', [App\Http\Controllers\Admin\Module\Boat\BoatController::class, 'recovery'])->name('recovery');
+                Route::get('recovery/search/{name}', [App\Http\Controllers\Admin\Module\Boat\BoatController::class, 'recoverySearch'])->name('recoverySearch');
+                Route::put('/restore/{id}', [App\Http\Controllers\Admin\Module\Boat\BoatController::class, 'restore'])->name('restore');
 
                 Route::name('attribute.')->prefix('attribute')->group(function () {
-                    Route::get('/', [App\Http\Controllers\Admin\Module\Hotel\Core\AttributeController::class, 'index'])->name('index');
-                    Route::post('/create', [App\Http\Controllers\Admin\Module\Hotel\Core\AttributeController::class, 'store'])->name('store');
-                    Route::get('/{id}/edit', [App\Http\Controllers\Admin\Module\Hotel\Core\AttributeController::class, 'edit'])->name('edit');
-                    Route::post('/{id}/update', [App\Http\Controllers\Admin\Module\Hotel\Core\AttributeController::class, 'update'])->name('update');
-                    Route::delete('/{id}/delete', [App\Http\Controllers\Admin\Module\Hotel\Core\AttributeController::class, 'delete'])->name('delete');
-                    Route::get('/{id}/termList', [App\Http\Controllers\Admin\Module\Hotel\Core\AttributeController::class, 'termList'])->name('termList');
-                    Route::post('/term/term/create', [App\Http\Controllers\Admin\Module\Hotel\Core\AttributeController::class, 'termStore'])->name('termStore');
-                    Route::get('/{id}/term/edit', [App\Http\Controllers\Admin\Module\Hotel\Core\AttributeController::class, 'termEdit'])->name('termEdit');
-                    Route::post('/{id}/term/update', [App\Http\Controllers\Admin\Module\Hotel\Core\AttributeController::class, 'termUpdate'])->name('termUpdate');
-                    Route::delete('/{id}/term/delete', [App\Http\Controllers\Admin\Module\Hotel\Core\AttributeController::class, 'termDelete'])->name('termDelete');
-                });
-
-                Route::name('roomAttribute.')->prefix('roomAttribute')->group(function () {
-                    Route::get('/', [App\Http\Controllers\Admin\Module\Hotel\Core\RoomAttributeController::class, 'index'])->name('index');
-                    Route::post('create', [App\Http\Controllers\Admin\Module\Hotel\Core\RoomAttributeController::class, 'store'])->name('store');
-                    Route::get('/{id}/edit', [App\Http\Controllers\Admin\Module\Hotel\Core\RoomAttributeController::class, 'edit'])->name('edit');
-                    Route::post('/{id}/update', [App\Http\Controllers\Admin\Module\Hotel\Core\RoomAttributeController::class, 'update'])->name('update');
-                    Route::delete('/{id}/delete', [App\Http\Controllers\Admin\Module\Hotel\Core\RoomAttributeController::class, 'delete'])->name('delete');
-                    Route::get('/{id}/termList', [App\Http\Controllers\Admin\Module\Hotel\Core\RoomAttributeController::class, 'termList'])->name('termList');
-                    Route::post('term/term/create', [App\Http\Controllers\Admin\Module\Hotel\Core\RoomAttributeController::class, 'termStore'])->name('termStore');
-                    Route::get('/{id}/term/edit', [App\Http\Controllers\Admin\Module\Hotel\Core\RoomAttributeController::class, 'termEdit'])->name('termEdit');
-                    Route::post('/{id}/term/update', [App\Http\Controllers\Admin\Module\Hotel\Core\RoomAttributeController::class, 'termUpdate'])->name('termUpdate');
-                    Route::delete('/{id}/term/delete', [App\Http\Controllers\Admin\Module\Hotel\Core\RoomAttributeController::class, 'termDelete'])->name('termDelete');
+                    Route::get('/', [App\Http\Controllers\Admin\Module\Boat\AttributeController::class, 'index'])->name('index');
+                    Route::post('/create', [App\Http\Controllers\Admin\Module\Boat\AttributeController::class, 'store'])->name('store');
+                    Route::get('/{id}/edit', [App\Http\Controllers\Admin\Module\Boat\AttributeController::class, 'edit'])->name('edit');
+                    Route::post('/{id}/update', [App\Http\Controllers\Admin\Module\Boat\AttributeController::class, 'update'])->name('update');
+                    Route::delete('/{id}/delete', [App\Http\Controllers\Admin\Module\Boat\AttributeController::class, 'delete'])->name('delete');
+                    Route::get('/{id}/termList', [App\Http\Controllers\Admin\Module\Boat\AttributeController::class, 'termList'])->name('termList');
+                    Route::post('/term/term/create', [App\Http\Controllers\Admin\Module\Boat\AttributeController::class, 'termStore'])->name('termStore');
+                    Route::get('/{id}/term/edit', [App\Http\Controllers\Admin\Module\Boat\AttributeController::class, 'termEdit'])->name('termEdit');
+                    Route::post('/{id}/term/update', [App\Http\Controllers\Admin\Module\Boat\AttributeController::class, 'termUpdate'])->name('termUpdate');
+                    Route::delete('/{id}/term/delete', [App\Http\Controllers\Admin\Module\Boat\AttributeController::class, 'termDelete'])->name('termDelete');
                 });
             });
 

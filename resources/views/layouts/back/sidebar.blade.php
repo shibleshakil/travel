@@ -39,6 +39,27 @@
                 </ul>
             </li>
             
+            <li class="nav-item">
+                <a href="#"><i class="fa-solid fa-ship"></i>
+                    <span class="menu-title" data-i18n="Boat">Boat</span>
+                </a>
+                <ul class="menu-content">
+                    <li @if ($url == 'admin.module.boat.index' || $url == 'admin.module.boat.edit') class="active" @endif>
+                        <a class="menu-item" href="{{ route ('admin.module.boat.index')}}" data-i18n="All Boats">All Boats</a>
+                    </li>
+                    <li @if ($url == 'admin.module.boat.create') class="active" @endif>
+                        <a class="menu-item" href="{{ route ('admin.module.boat.create')}}" data-i18n="Add New Boat">Add New Boat</a>
+                    </li>
+                    <li @if ($url == 'admin.module.boat.attribute.index' || $url == 'admin.module.boat.attribute.edit' || 
+                    $url == 'admin.module.boat.attribute.termList' || $url == 'admin.module.boat.attribute.termEdit') class="active" @endif>
+                        <a class="menu-item" href="{{ route ('admin.module.boat.attribute.index')}}" data-i18n="Attributes">Attributes</a>
+                    </li>
+                    <li @if ($url == 'admin.module.boat.recovery') class="active" @endif>
+                        <a class="menu-item" href="{{ route ('admin.module.boat.recovery')}}" data-i18n="Recovery">Recovery</a>
+                    </li>
+                </ul>
+            </li>
+            
             <li class=" nav-item">
                 <a href="#"><i class="fa-solid fa-gear"></i>
                     <span class="menu-title" data-i18n="Setup">Setup</span>

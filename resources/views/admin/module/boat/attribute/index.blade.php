@@ -1,5 +1,5 @@
 @extends('layouts.back.master')
-@section('title', 'Hotel Room Attribute')
+@section('title', 'Boat Attribute')
 @section('content')
     <div class="content-wrapper">
         <div class="content-header row">
@@ -8,8 +8,8 @@
                     <div class="breadcrumb-wrapper col-12">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route ('admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{route ('admin.module.hotel.index') }}">Hotel</a></li>
-                            <li class="breadcrumb-item active"><a href="{{route ('admin.module.hotel.roomAttribute.index') }}">Room Attribute</a></li>
+                            <li class="breadcrumb-item"><a href="{{route ('admin.module.boat.index') }}">Boat</a></li>
+                            <li class="breadcrumb-item active"><a href="{{route ('admin.module.boat.attribute.index') }}">Attribute</a></li>
                         </ol>
                     </div>
                 </div>
@@ -50,13 +50,13 @@
                                 @endif
                                 <div class="card">
                                     <div class="form-card-header">
-                                        <h4 class="card-title" id="basic-layout-card-center">Add New Hotel Room Attribute</h4>
+                                        <h4 class="card-title" id="basic-layout-card-center">Add New Boat Attribute</h4>
                                     </div>
                                     <div class="card-content collapse show">
                                         <div class="card-body">
-                                            <form class="form" action="{{ route ('admin.module.hotel.roomAttribute.store') }}" method="post" enctype="multipart/form-data">@csrf
+                                            <form class="form" action="{{ route ('admin.module.boat.attribute.store') }}" method="post" enctype="multipart/form-data">@csrf
                                                 <div class="form-body">
-                                                    @include('admin.module.core.roomAttribute.form')
+                                                    @include('admin.module.core.attribute.form')
                                                 </div>
         
                                                 <div class="form-actions center">
@@ -77,7 +77,7 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="form-card-header">
-                                        <h4 class="card-title">Hotel Room Attribute List</h4>
+                                        <h4 class="card-title">Boat Attribute List</h4>
                                     </div>
                                     <div class="card-content collapse show">
                                         <div class="card-body card-dashboard">
@@ -99,16 +99,16 @@
                                                                     <td>{{$data->name}}</td>
                                                                     <td>{{$data->position ? $data->position : 0}}</td>
                                                                     <td>
-                                                                        <a href="{{ route ('admin.module.hotel.roomAttribute.edit', ['id'=>$data->id])}}">
+                                                                        <a href="{{ route ('admin.module.boat.attribute.edit', ['id'=>$data->id])}}">
                                                                             <button type="button" title="Edit" class="btn btn-primary btn-sm">
                                                                             <i class="fa fa-pencil-square"></i> Edit</button>
                                                                         </a>
-                                                                        <a href="{{ route ('admin.module.hotel.roomAttribute.termList', ['id'=>$data->id])}}">
+                                                                        <a href="{{ route ('admin.module.boat.attribute.termList', ['id'=>$data->id])}}">
                                                                             <button type="button" title="Edit" class="btn btn-success btn-sm">
                                                                             Manage Terms</button>
                                                                         </a>
                                                                         <button type="button" class="btn btn-danger btn-sm" title="Delete" 
-                                                                            onclick="deleteData('{{ route('admin.module.hotel.roomAttribute.delete', [$data->id]) }}')">
+                                                                            onclick="deleteData('{{ route('admin.module.boat.attribute.delete', [$data->id]) }}')">
                                                                             <i class="fa fa-trash" aria-hidden="true"></i> Delete
                                                                         </button>
                                                                     </td>
