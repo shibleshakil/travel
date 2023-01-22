@@ -197,6 +197,7 @@
                         <label for="sale_price">Sale Price</label>
                         <input type="number" name="sale_price" id="sale_price" step="any" min="0" class="form-control phone" placeholder="Price per day" 
                         @if($url == 'admin.module.car.edit') value="{{$data->sale_price}}"@else value="{{old('sale_price')}}" @endif>
+                        <p class="font-italic">If the regular price is less than the discount , it will show the regular price</p>
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="min_day_before_booking">Minimum advance reservations</label>
@@ -342,7 +343,7 @@
                             @foreach ($attributeTerm->where('attribute_id', $attr->id) as $attrTrm)
                                 <fieldset class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="term_id[]" value="{{$attrTrm->id}}" @if($url == 'admin.module.car.edit' && in_array($attrTrm->id, $CarTerms)) checked @endif> {{$attrTrm->name}}
+                                        <input type="checkbox" name="term_id[]" value="{{$attrTrm->id}}" @if($url == 'admin.module.car.edit' && in_array($attrTrm->id, $carTerms)) checked @endif> {{$attrTrm->name}}
                                     </label>
                                 </fieldset>
                             @endforeach

@@ -47,9 +47,9 @@ class CarController extends Controller
 
     public function create(){
         $locations = Location::where('is_active', 1)->orderBy('name')->get();
-        $attributes = Attribute::where('is_active', 1)->where('service', 'boat')->orderBy('position')->get();
+        $attributes = Attribute::where('is_active', 1)->where('service', 'car')->orderBy('position')->get();
         $attributeTerm = AttributeTerm::with('attribute')->where('is_active', 1)->whereHas('attribute', function($query){
-            return $query->where('is_active', 1)->where('service', 'boat');
+            return $query->where('is_active', 1)->where('service', 'car');
         })->get();
 
         return view('admin.module.car.create', compact('locations', 'attributes', 'attributeTerm'));
@@ -65,15 +65,16 @@ class CarController extends Controller
         $carTerms = array_column($carTerms, 'term_id');
 
         $locations = Location::where('is_active', 1)->orderBy('name')->get();
-        $attributes = Attribute::where('is_active', 1)->where('service', 'boat')->orderBy('position')->get();
+        $attributes = Attribute::where('is_active', 1)->where('service', 'car')->orderBy('position')->get();
         $attributeTerm = AttributeTerm::with('attribute')->where('is_active', 1)->whereHas('attribute', function($query){
-            return $query->where('is_active', 1)->where('service', 'boat');
+            return $query->where('is_active', 1)->where('service', 'car');
         })->get();
         
         return view('admin.module.car.edit', compact('data', 'carTerms', 'locations', 'attributes', 'attributeTerm'));
     }
 
     public function store(Request $request){
+        // dd($request->all());
         DB::beginTransaction();
         try {
             $loggedUser = auth()->user()->id;
@@ -117,7 +118,7 @@ class CarController extends Controller
     
             $extraPrice = json_encode($reqExtraPrice);
     
-            $data = new Boat;
+            $data = new Car;
             $data->slug = $slug;
             $data->faqs = $allfaqs;
             $data->extra_price = $extraPrice;
@@ -129,11 +130,12 @@ class CarController extends Controller
             $data->passenger = $request->passenger;
             $data->gear_shift = $request->gear_shift;
             $data->baggage = $request->baggage;
-            $data->Door = $request->Door;
+            $data->door = $request->door;
             $data->address = $request->address;
             $data->map_lat = $request->map_lat;
             $data->map_lng = $request->map_lng;
             $data->map_zoom = $request->map_zoom;
+            $data->car_number = $request->car_number;
             $data->price = $request->price;
             $data->sale_price = $request->sale_price;
             $data->min_day_before_booking = $request->min_day_before_booking;
@@ -227,11 +229,12 @@ class CarController extends Controller
             $data->passenger = $request->passenger;
             $data->gear_shift = $request->gear_shift;
             $data->baggage = $request->baggage;
-            $data->Door = $request->Door;
+            $data->door = $request->door;
             $data->address = $request->address;
             $data->map_lat = $request->map_lat;
             $data->map_lng = $request->map_lng;
             $data->map_zoom = $request->map_zoom;
+            $data->car_number = $request->car_number;
             $data->price = $request->price;
             $data->sale_price = $request->sale_price;
             $data->min_day_before_booking = $request->min_day_before_booking;

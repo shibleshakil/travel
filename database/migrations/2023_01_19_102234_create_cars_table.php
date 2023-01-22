@@ -24,7 +24,7 @@ class CreateCarsTable extends Migration
             $table->integer('passenger')->nullable();
             $table->string('gear_shift')->nullable();
             $table->integer('baggage')->nullable();
-            $table->integer('Door')->nullable();
+            $table->integer('door')->nullable();
             $table->string('address')->nullable();
             $table->string('map_lat', 20)->nullable();
             $table->string('map_lng', 20)->nullable();
