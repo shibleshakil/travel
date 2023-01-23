@@ -1,5 +1,5 @@
 @extends('layouts.back.master')
-@section('title', 'Boat Attribute')
+@section('title', 'Space Attribute')
 @section('content')
     <div class="content-wrapper">
         <div class="content-header row">
@@ -8,8 +8,8 @@
                     <div class="breadcrumb-wrapper col-12">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route ('admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{route ('admin.module.boat.index') }}">Boat</a></li>
-                            <li class="breadcrumb-item"><a href="{{route ('admin.module.boat.attribute.index') }}">Attribute</a></li>
+                            <li class="breadcrumb-item"><a href="{{route ('admin.module.space.index') }}">Space</a></li>
+                            <li class="breadcrumb-item"><a href="{{route ('admin.module.space.attribute.index') }}">Attribute</a></li>
                             <li class="breadcrumb-item active"><a href="#">Edit</a></li>
                         </ol>
                     </div>
@@ -46,15 +46,15 @@
                                 <strong>{{ $message }}</strong>
                             </div>
                         @endif
-                        <div class="card">
+                        <div class="Spaced">
                             <div class="form-card-header">
                                 <h4 class="card-title" id="basic-layout-card-center">Edit {{$data->name}}</h4>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
-                                    <form class="form" action="{{ route ('admin.module.boat.attribute.update', ['id'=>$data->id]) }}" method="post" enctype="multipart/form-data">@csrf
+                                    <form class="form" action="{{ route ('admin.module.space.attribute.update', ['id'=>$data->id]) }}" method="post" enctype="multipart/form-data">@csrf
                                         <div class="form-body">
-                                            @include('admin.module.boat.attribute.form')
+                                            @include('admin.module.space.attribute.form')
                                         </div>
 
                                         <div class="form-actions center">

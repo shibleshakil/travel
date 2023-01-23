@@ -81,6 +81,27 @@
                 </ul>
             </li>
             
+            <li class="nav-item">
+                <a href="#"><i class="fa-solid fa-ship"></i>
+                    <span class="menu-title" data-i18n="Space">Space</span>
+                </a>
+                <ul class="menu-content">
+                    <li @if ($url == 'admin.module.space.index' || $url == 'admin.module.space.edit') class="active" @endif>
+                        <a class="menu-item" href="{{ route ('admin.module.space.index')}}" data-i18n="All Spaces">All Spaces</a>
+                    </li>
+                    <li @if ($url == 'admin.module.space.create') class="active" @endif>
+                        <a class="menu-item" href="{{ route ('admin.module.space.create')}}" data-i18n="Add New Space">Add New Space</a>
+                    </li>
+                    <li @if ($url == 'admin.module.space.attribute.index' || $url == 'admin.module.space.attribute.edit' || 
+                    $url == 'admin.module.space.attribute.termList' || $url == 'admin.module.space.attribute.termEdit') class="active" @endif>
+                        <a class="menu-item" href="{{ route ('admin.module.space.attribute.index')}}" data-i18n="Attributes">Attributes</a>
+                    </li>
+                    <li @if ($url == 'admin.module.space.recovery') class="active" @endif>
+                        <a class="menu-item" href="{{ route ('admin.module.space.recovery')}}" data-i18n="Recovery">Recovery</a>
+                    </li>
+                </ul>
+            </li>
+            
             <li class=" nav-item">
                 <a href="#"><i class="fa-solid fa-gear"></i>
                     <span class="menu-title" data-i18n="Setup">Setup</span>

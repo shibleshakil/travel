@@ -1,5 +1,5 @@
 @extends('layouts.back.master')
-@section('title', 'Car Attribute')
+@section('title', 'Attribute Term List')
 @section('content')
     <div class="content-wrapper">
         <div class="content-header row">
@@ -8,8 +8,9 @@
                     <div class="breadcrumb-wrapper col-12">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route ('admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{route ('admin.module.car.index') }}">Car</a></li>
-                            <li class="breadcrumb-item active"><a href="{{route ('admin.module.car.attribute.index') }}">Attribute</a></li>
+                            <li class="breadcrumb-item"><a href="{{route ('admin.module.space.index') }}">Space</a></li>
+                            <li class="breadcrumb-item"><a href="{{route ('admin.module.space.attribute.index') }}">Attribute</a></li>
+                            <li class="breadcrumb-item active"><a href="{{route ('admin.module.space.attribute.termList',["id"=>$attributeInfo->id]) }}">Attribute : {{$attributeInfo->name}}</a></li>
                         </ol>
                     </div>
                 </div>
@@ -50,13 +51,29 @@
                                 @endif
                                 <div class="card">
                                     <div class="form-card-header">
-                                        <h4 class="card-title" id="basic-layout-card-center">Add New Car Attribute</h4>
+                                        <h4 class="card-title" id="basic-layout-card-center">Add new Attribute: {{$attributeInfo->name}} Term</h4>
                                     </div>
                                     <div class="card-content collapse show">
                                         <div class="card-body">
-                                            <form class="form" action="{{ route ('admin.module.car.attribute.store') }}" method="post" enctype="multipart/form-data">@csrf
+                                            <form class="form" action="{{ route ('admin.module.space.attribute.termStore') }}" method="post" enctype="multipart/form-data">@csrf
                                                 <div class="form-body">
-                                                    @include('admin.module.car.attribute.form')
+                                                    <div class="form-group">
+                                                        <label for="name">Name<span class="text-danger">*</span></label>
+                                                        <input type="text" id="name" class="form-control" placeholder="name" name="name" value="{{old('name')}}" required>
+                                                        <input type="hidden" name="attribute_id" value="{{$attributeInfo->id}}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="icon">Icon Class - get icon in 
+                                                            <a href="http://fontawesome.com" target="_blank" rel="noopener noreferrer">fontawesome.com</a> or 
+                                                            <a href="http://icofont.com" target="_blank" rel="noopener noreferrer">icofont.com</a>
+                                                        </label>
+                                                        <input type="text" id="icon" class="form-control" placeholder="Ex: fa fa-google" name="icon" value="{{old('icon')}}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="image">Upload Image size 30px</label>
+                                                        <input type="file" id="input-file-now" name="image" class="dropify" />
+                                                        <p class="font-italic">All the Term's image are same size</p>
+                                                    </div>
                                                 </div>
         
                                                 <div class="form-actions center">
@@ -77,7 +94,7 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="form-card-header">
-                                        <h4 class="card-title">Car Attribute List</h4>
+                                        <h4 class="card-title">Attribute: {{$attributeInfo->name}} Term List</h4>
                                     </div>
                                     <div class="card-content collapse show">
                                         <div class="card-body card-dashboard">
@@ -87,7 +104,8 @@
                                                         <tr>
                                                             <th>Sl</th>
                                                             <th>Name</th>
-                                                            <th>Position</th>
+                                                            <th>Icon</th>
+                                                            <th>Image</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -97,18 +115,15 @@
                                                                 <tr>
                                                                     <td>{{++$sl}}</td>
                                                                     <td>{{$data->name}}</td>
-                                                                    <td>{{$data->position ? $data->position : 0}}</td>
+                                                                    <td>@if($data->icon)<i class="{{$data->icon}} tfont"></i>@endif</td>
+                                                                    <td>@if($data->image)<img src="{{asset('uploads/images/'.$data->image)}}" alt="" class="timage">@endif</td>
                                                                     <td>
-                                                                        <a href="{{ route ('admin.module.car.attribute.edit', ['id'=>$data->id])}}">
+                                                                        <a href="{{ route ('admin.module.space.attribute.termEdit', ['id'=>$data->id])}}">
                                                                             <button type="button" title="Edit" class="btn btn-primary btn-sm">
                                                                             <i class="fa fa-pencil-square"></i> Edit</button>
                                                                         </a>
-                                                                        <a href="{{ route ('admin.module.car.attribute.termList', ['id'=>$data->id])}}">
-                                                                            <button type="button" title="Edit" class="btn btn-success btn-sm">
-                                                                            Manage Terms</button>
-                                                                        </a>
                                                                         <button type="button" class="btn btn-danger btn-sm" title="Delete" 
-                                                                            onclick="deleteData('{{ route('admin.module.car.attribute.delete', [$data->id]) }}')">
+                                                                            onclick="deleteData('{{ route('admin.module.space.attribute.termDelete', [$data->id]) }}')">
                                                                             <i class="fa fa-trash" aria-hidden="true"></i> Delete
                                                                         </button>
                                                                     </td>
@@ -120,7 +135,8 @@
                                                         <tr>
                                                             <th>Sl</th>
                                                             <th>Name</th>
-                                                            <th>Position</th>
+                                                            <th>Icon</th>
+                                                            <th>Image</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </tfoot>

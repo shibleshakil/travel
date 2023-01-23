@@ -146,6 +146,33 @@ Route::group(['middleware' => ['auth']], function(){
                 });
             });
 
+            // space
+            Route::name('space.')->prefix('space')->group(function () {
+                Route::get('/', [App\Http\Controllers\Admin\Module\Space\SpaceController::class, 'index'])->name('index');
+                Route::get('/search/{name}', [App\Http\Controllers\Admin\Module\Space\SpaceController::class, 'search'])->name('search');
+                Route::get('/create', [App\Http\Controllers\Admin\Module\Space\SpaceController::class, 'create'])->name('create');
+                Route::post('/create', [App\Http\Controllers\Admin\Module\Space\SpaceController::class, 'store'])->name('store');
+                Route::get('/edit/{id}', [App\Http\Controllers\Admin\Module\Space\SpaceController::class, 'edit'])->name('edit');
+                Route::post('/edit/{id}', [App\Http\Controllers\Admin\Module\Space\SpaceController::class, 'update'])->name('update');
+                Route::delete('/delete/{id}', [App\Http\Controllers\Admin\Module\Space\SpaceController::class, 'delete'])->name('delete');
+                Route::get('/recovery', [App\Http\Controllers\Admin\Module\Space\SpaceController::class, 'recovery'])->name('recovery');
+                Route::get('recovery/search/{name}', [App\Http\Controllers\Admin\Module\Space\SpaceController::class, 'recoverySearch'])->name('recoverySearch');
+                Route::put('/restore/{id}', [App\Http\Controllers\Admin\Module\Space\SpaceController::class, 'restore'])->name('restore');
+
+                Route::name('attribute.')->prefix('attribute')->group(function () {
+                    Route::get('/', [App\Http\Controllers\Admin\Module\Space\AttributeController::class, 'index'])->name('index');
+                    Route::post('/create', [App\Http\Controllers\Admin\Module\Space\AttributeController::class, 'store'])->name('store');
+                    Route::get('/{id}/edit', [App\Http\Controllers\Admin\Module\Space\AttributeController::class, 'edit'])->name('edit');
+                    Route::post('/{id}/update', [App\Http\Controllers\Admin\Module\Space\AttributeController::class, 'update'])->name('update');
+                    Route::delete('/{id}/delete', [App\Http\Controllers\Admin\Module\Space\AttributeController::class, 'delete'])->name('delete');
+                    Route::get('/{id}/termList', [App\Http\Controllers\Admin\Module\Space\AttributeController::class, 'termList'])->name('termList');
+                    Route::post('/term/term/create', [App\Http\Controllers\Admin\Module\Space\AttributeController::class, 'termStore'])->name('termStore');
+                    Route::get('/{id}/term/edit', [App\Http\Controllers\Admin\Module\Space\AttributeController::class, 'termEdit'])->name('termEdit');
+                    Route::post('/{id}/term/update', [App\Http\Controllers\Admin\Module\Space\AttributeController::class, 'termUpdate'])->name('termUpdate');
+                    Route::delete('/{id}/term/delete', [App\Http\Controllers\Admin\Module\Space\AttributeController::class, 'termDelete'])->name('termDelete');
+                });
+            });
+
         });
     });
     

@@ -54,7 +54,7 @@
                                 <div class="card-body">
                                     <form class="form" action="{{ route ('admin.module.car.attribute.update', ['id'=>$data->id]) }}" method="post" enctype="multipart/form-data">@csrf
                                         <div class="form-body">
-                                            @include('admin.module.core.attribute.form')
+                                            @include('admin.module.car.attribute.form')
                                         </div>
 
                                         <div class="form-actions center">

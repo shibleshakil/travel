@@ -56,7 +56,7 @@
                                         <div class="card-body">
                                             <form class="form" action="{{ route ('admin.module.boat.attribute.store') }}" method="post" enctype="multipart/form-data">@csrf
                                                 <div class="form-body">
-                                                    @include('admin.module.core.attribute.form')
+                                                    @include('admin.module.boat.attribute.form')
                                                 </div>
         
                                                 <div class="form-actions center">

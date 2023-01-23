@@ -38,7 +38,7 @@ class CreateBoatsTable extends Migration
             $table->string('enable_extra_price')->nullable();
             $table->longText('extra_price')->nullable();
             $table->string('status', 50)->nullable();
-            $table->tinyInteger('default_state')->default(1);
+            $table->tinyInteger('default_state')->nullable();
             $table->tinyInteger('is_feature')->nullable();
             $table->string('feature_image')->nullable();
             $table->text('galary_image')->nullable();

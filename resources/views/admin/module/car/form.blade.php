@@ -190,26 +190,19 @@
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="price">Price</label>
-                        <input type="number" name="price" id="price" step="any" min="0" class="form-control phone" placeholder="Price per hour" 
+                        <input type="number" name="price" id="price" step="any" min="0" class="form-control phone" placeholder="Car Price" 
                         @if($url == 'admin.module.car.edit') value="{{$data->price}}"@else value="{{old('price')}}" @endif>
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="sale_price">Sale Price</label>
-                        <input type="number" name="sale_price" id="sale_price" step="any" min="0" class="form-control phone" placeholder="Price per day" 
+                        <input type="number" name="sale_price" id="sale_price" step="any" min="0" class="form-control phone" placeholder="Car Sale Price" 
                         @if($url == 'admin.module.car.edit') value="{{$data->sale_price}}"@else value="{{old('sale_price')}}" @endif>
                         <p class="font-italic">If the regular price is less than the discount , it will show the regular price</p>
                     </div>
                     <div class="col-md-6 form-group">
-                        <label for="min_day_before_booking">Minimum advance reservations</label>
-                        <input type="number" name="min_day_before_booking" min="0" step="1" id="min_day_before_booking" class="form-control phone" placeholder="Ex:3" 
-                        @if($url == 'admin.module.car.edit') value="{{$data->min_day_before_booking}}"@else value="{{old('min_day_before_booking')}}" @endif>
-                        <p class="font-italic">Leave blank if you dont need to use the min day option</p>
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label for="min_day_stay">Minimum day stay requirements</label>
-                        <input type="number" name="min_day_stay" min="0" step="1" id="min_day_stay" class="form-control phone" placeholder="Ex:4" 
-                        @if($url == 'admin.module.car.edit') value="{{$data->min_day_stay}}"@else value="{{old('min_day_stay')}}" @endif>
-                        <p class="font-italic">Leave blank if you dont need to set minimum day stay option</p>
+                        <label for="max_guest">Max Guests</label>
+                        <input type="number" name="max_guest" min="0" step="1" id="max_guest" class="form-control phone" placeholder="Ex:3" 
+                        @if($url == 'admin.module.car.edit') value="{{$data->max_guest}}"@else value="{{old('max_guest')}}" @endif>
                     </div>
                     <div class="col-md-12 form-group">
                         <label>
