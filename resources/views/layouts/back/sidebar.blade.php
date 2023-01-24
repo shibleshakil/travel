@@ -120,6 +120,9 @@
                     <li @if ($url == 'admin.module.flight.create') class="active" @endif>
                         <a class="menu-item" href="{{ route ('admin.module.flight.create')}}" data-i18n="Add New Flight">Add New Flight</a>
                     </li>
+                    <li @if ($url == 'admin.module.flight.airline.index' || $url == 'admin.module.flight.airline.edit') class="active" @endif>
+                        <a class="menu-item" href="{{ route ('admin.module.flight.airline.index')}}" data-i18n="Airline">Airline</a>
+                    </li>
                     <li @if ($url == 'admin.module.flight.attribute.index' || $url == 'admin.module.flight.attribute.edit' || 
                     $url == 'admin.module.flight.attribute.termList' || $url == 'admin.module.flight.attribute.termEdit') class="active" @endif>
                         <a class="menu-item" href="{{ route ('admin.module.flight.attribute.index')}}" data-i18n="Attributes">Attributes</a>
