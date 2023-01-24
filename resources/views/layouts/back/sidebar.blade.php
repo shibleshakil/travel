@@ -61,7 +61,7 @@
             </li>
             
             <li class="nav-item">
-                <a href="#"><i class="fa-solid fa-ship"></i>
+                <a href="#"><i class="icofont-car"></i>
                     <span class="menu-title" data-i18n="Car">Car</span>
                 </a>
                 <ul class="menu-content">
@@ -82,7 +82,7 @@
             </li>
             
             <li class="nav-item">
-                <a href="#"><i class="fa-solid fa-ship"></i>
+                <a href="#"><i class="icofont-home"></i>
                     <span class="menu-title" data-i18n="Space">Space</span>
                 </a>
                 <ul class="menu-content">
