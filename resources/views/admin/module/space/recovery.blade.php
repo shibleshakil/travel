@@ -116,7 +116,7 @@
 @section('script')
     <script type="text/javascript">
         $(document).ready(function(){
-            const filterUrl = "{{url ('admin/module/car/recovery/search') }}";
+            const filterUrl = "{{url ('admin/module/space/recovery/search') }}";
             $("#search").keyup(function(){
                 var searchFor = $(this).val();
                 adminFilterUrlGenerate(filterUrl, searchFor);

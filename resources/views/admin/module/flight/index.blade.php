@@ -1,5 +1,5 @@
 @extends('layouts.back.master')
-@section('title', 'Space')
+@section('title', 'Flight')
 @section('content')
     <div class="content-wrapper">
         <div class="content-header row">
@@ -8,8 +8,8 @@
                     <div class="breadcrumb-wrapper col-12">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route ('admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{route ('admin.module.space.index') }}">Space</a></li>
-                            <li class="breadcrumb-item active"><a href="#">All Spaces</a></li>
+                            <li class="breadcrumb-item"><a href="{{route ('admin.module.flight.index') }}">Flight</a></li>
+                            <li class="breadcrumb-item active"><a href="#">All Flights</a></li>
                         </ol>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                         <h4 class="card-title">All Cars</h4>
                     </div>
                     <div class="col-lg-6">
-                        <form id="adminFilterUrl" action="{{route ('admin.module.space.search', ["All Data"]) }}" method="get">@csrf
+                        <form id="adminFilterUrl" action="{{route ('admin.module.flight.search', ["All Data"]) }}" method="get">@csrf
                             <div class="row justify-content-end">
                                 <div class="col-lg-6 form-group">
                                     <input type="text" class="form-control" id="search" placeholder="search by Car name">
@@ -32,7 +32,7 @@
                                     <button type="submit" class="btn btn-primary" id="btnFilter"> <i class="fa fa-search"></i> Search </button>
                                 </div>
                                 <div class="col-lg-3 form-group">
-                                    <a href="{{route ('admin.module.space.create') }}" class="btn btn-info">Create New Space</a>
+                                    <a href="{{route ('admin.module.flight.create') }}" class="btn btn-info">Create New Flight</a>
                                 </div>
                             </div>
                         </form>
@@ -76,12 +76,12 @@
                                                             <td><span class="badge @if($data->status == "Draft")draft @elseif($data->status == "Publish")publish @endif">{{$data->status}}</span></td>
                                                             <td>{{App\Helper\DateFormatHelper::dateFormat($data->created_at)}}</td>
                                                             <td>
-                                                                <a href="{{ route ('admin.module.space.edit', ['id'=>$data->id])}}">
-                                                                    <button type="button" title="Edit Space" class="btn btn-primary btn-sm btn-icon">
+                                                                <a href="{{ route ('admin.module.flight.edit', ['id'=>$data->id])}}">
+                                                                    <button type="button" title="Edit Flight" class="btn btn-primary btn-sm btn-icon">
                                                                     <i class="fa fa-pencil-square"></i></button>
                                                                 </a>
-                                                                <button type="button" class="btn btn-danger btn-sm btn-icon" title="Delete Space" 
-                                                                    onclick="deleteData('{{ route('admin.module.space.delete', [$data->id]) }}')">
+                                                                <button type="button" class="btn btn-danger btn-sm btn-icon" title="Delete Flight" 
+                                                                    onclick="deleteData('{{ route('admin.module.flight.delete', [$data->id]) }}')">
                                                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                                                 </button>
                                                             </td>
@@ -120,7 +120,7 @@
 @section('script')
     <script type="text/javascript">
         $(document).ready(function(){
-            const filterUrl = "{{url ('admin/module/space/search') }}";
+            const filterUrl = "{{url ('admin/module/flight/search') }}";
             $("#search").keyup(function(){
                 var searchFor = $(this).val();
                 adminFilterUrlGenerate(filterUrl, searchFor);

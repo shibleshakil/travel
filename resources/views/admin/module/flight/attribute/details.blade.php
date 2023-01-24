@@ -1,5 +1,5 @@
 @extends('layouts.back.master')
-@section('title', 'Space Attribute')
+@section('title', 'Flight Attribute')
 @section('content')
     <div class="content-wrapper">
         <div class="content-header row">
@@ -8,8 +8,8 @@
                     <div class="breadcrumb-wrapper col-12">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route ('admin.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{route ('admin.module.space.index') }}">Space</a></li>
-                            <li class="breadcrumb-item"><a href="{{route ('admin.module.space.attribute.index') }}">Attribute</a></li>
+                            <li class="breadcrumb-item"><a href="{{route ('admin.module.flight.index') }}">Flight</a></li>
+                            <li class="breadcrumb-item"><a href="{{route ('admin.module.flight.attribute.index') }}">Attribute</a></li>
                             <li class="breadcrumb-item active"><a href="#">Edit</a></li>
                         </ol>
                     </div>
@@ -52,9 +52,9 @@
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
-                                    <form class="form" action="{{ route ('admin.module.space.attribute.update', ['id'=>$data->id]) }}" method="post" enctype="multipart/form-data">@csrf
+                                    <form class="form" action="{{ route ('admin.module.flight.attribute.update', ['id'=>$data->id]) }}" method="post" enctype="multipart/form-data">@csrf
                                         <div class="form-body">
-                                            @include('admin.module.space.attribute.form')
+                                            @include('admin.module.flight.attribute.form')
                                         </div>
 
                                         <div class="form-actions center">

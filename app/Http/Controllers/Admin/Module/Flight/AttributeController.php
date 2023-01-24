@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Module\Space;
+namespace App\Http\Controllers\Admin\Module\Flight;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -16,50 +16,50 @@ class AttributeController extends Controller
 
 {
     public function index(){
-        $datas = Attribute::where('is_active', 1)->where('service', 'space')->get()->reverse();
+        $datas = Attribute::where('is_active', 1)->where('service', 'flight')->get()->reverse();
         $sl = 0;
 
-        return view('admin.module.space.attribute.index', compact('datas', 'sl'));
+        return view('admin.module.flight.attribute.index', compact('datas', 'sl'));
     }
 
     public function store(Request $request){
         $validatedData = $request->validate([
-            'name' => ['required', 'unique:attributes,name,'.$request->id.',id,service,space'],
+            'name' => ['required', 'unique:attributes,name,'.$request->id.',id,service,flight'],
             'position' => ['nullable', 'numeric'],
         ]);
-        $parentName = 'space';
+        $parentName = 'flight';
         $data = new Attribute;
         $data->name = $request->name;
         $data->slug = SlugHelper::generateSlug($request->name, $parentName);
-        $data->service = 'space';
+        $data->service = 'flight';
         $data->position = $request->position;
         $data->created_by = auth()->user()->id;
         $data->save();
 
-        return back()->with('success', 'New Space Attribute Added Successfully!');
+        return back()->with('success', 'New Flight Attribute Added Successfully!');
     }
     
     public function edit($id){
         $data = Attribute::findorFail($id);
 
-        return view('admin.module.space.attribute.details', compact('data'));
+        return view('admin.module.flight.attribute.details', compact('data'));
     }
     
     public function update(Request $request, $id){
         $validatedData = $request->validate([
-            'name' => ['required', 'unique:attributes,name,'.$id.',id,service,space'],
+            'name' => ['required', 'unique:attributes,name,'.$id.',id,service,flight'],
             'position' => ['nullable', 'numeric'],
         ]);
-        $parentName = 'space';
+        $parentName = 'flight';
         $data = Attribute::findorFail($id);
         $data->name = $request->name;
         $data->slug = SlugHelper::generateSlug($request->name, $parentName);
-        $data->service = 'space';
+        $data->service = 'flight';
         $data->position = $request->position;
         $data->updated_by = auth()->user()->id;
         $data->save();
 
-        return back()->with('success', 'Space Attribute Updated Successfully!');
+        return back()->with('success', 'Flight Attribute Updated Successfully!');
     }
 
     public function delete($id){
@@ -76,7 +76,7 @@ class AttributeController extends Controller
         $datas = AttributeTerm::with('attribute')->where('is_active', 1)->where('attribute_id', $id)->get()->reverse();
         $sl = 0;
 
-        return view('admin.module.space.attribute.termList', compact('attributeInfo', 'datas', 'sl'));
+        return view('admin.module.flight.attribute.termList', compact('attributeInfo', 'datas', 'sl'));
     }
 
     public function termStore(Request $request){
@@ -106,7 +106,7 @@ class AttributeController extends Controller
     public function termEdit($id){
         $data = AttributeTerm::findorFail($id);
 
-        return view('admin.module.space.attribute.termDetails', compact('data'));
+        return view('admin.module.flight.attribute.termDetails', compact('data'));
     }
     
     public function termUpdate(Request $request, $id){

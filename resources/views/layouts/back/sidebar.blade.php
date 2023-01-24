@@ -3,19 +3,22 @@
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li @if($url=='admin.dashboard' ) class="active" @else class=" nav-item" @endif>
-                <a href="{{ route ('admin.dashboard') }}"><i class="fa-solid fa-gauge"></i>
+                <a href="{{ route ('admin.dashboard') }}">
+                    <i class="fa-solid fa-gauge"></i>
                     <span class="menu-title" data-i18n="Dashboard">Dashboard</span>
                 </a>
             </li>
             
             <li @if($url=='admin.module.location.index' || $url=='admin.module.location.edit' ) class="active" @else class=" nav-item" @endif>
-                <a href="{{ route ('admin.module.location.index') }}"><i class="fa-solid fa-compass"></i>
+                <a href="{{ route ('admin.module.location.index') }}">
+                    <i class="fa-solid fa-compass"></i>
                     <span class="menu-title" data-i18n="Location">Location</span>
                 </a>
             </li>
             
             <li @if ($url == 'admin.module.hotel.room.index' || $url == 'admin.module.hotel.room.edit') class="nav-item open active" @else class="nav-item" @endif>
-                <a href="#"><i class="fa-solid fa-building"></i>
+                <a href="#">
+                    <i class="fa-solid fa-hotel"></i>
                     <span class="menu-title" data-i18n="Hotel">Hotel</span>
                 </a>
                 <ul class="menu-content">
@@ -40,7 +43,8 @@
             </li>
             
             <li class="nav-item">
-                <a href="#"><i class="fa-solid fa-ship"></i>
+                <a href="#">
+                    <i class="fa-solid fa-ship"></i>
                     <span class="menu-title" data-i18n="Boat">Boat</span>
                 </a>
                 <ul class="menu-content">
@@ -61,7 +65,8 @@
             </li>
             
             <li class="nav-item">
-                <a href="#"><i class="icofont-car"></i>
+                <a href="#">
+                    <i class="fa-solid fa-car"></i>
                     <span class="menu-title" data-i18n="Car">Car</span>
                 </a>
                 <ul class="menu-content">
@@ -82,7 +87,8 @@
             </li>
             
             <li class="nav-item">
-                <a href="#"><i class="icofont-home"></i>
+                <a href="#">
+                    <i class="fa-solid fa-house-chimney"></i>
                     <span class="menu-title" data-i18n="Space">Space</span>
                 </a>
                 <ul class="menu-content">
@@ -102,8 +108,31 @@
                 </ul>
             </li>
             
+            <li class="nav-item">
+                <a href="#">
+                    <i class="fa-solid fa-plane-up"></i>
+                    <span class="menu-title" data-i18n="Flight">Flight</span>
+                </a>
+                <ul class="menu-content">
+                    <li @if ($url == 'admin.module.flight.index' || $url == 'admin.module.flight.edit') class="active" @endif>
+                        <a class="menu-item" href="{{ route ('admin.module.flight.index')}}" data-i18n="All Flights">All Flights</a>
+                    </li>
+                    <li @if ($url == 'admin.module.flight.create') class="active" @endif>
+                        <a class="menu-item" href="{{ route ('admin.module.flight.create')}}" data-i18n="Add New Flight">Add New Flight</a>
+                    </li>
+                    <li @if ($url == 'admin.module.flight.attribute.index' || $url == 'admin.module.flight.attribute.edit' || 
+                    $url == 'admin.module.flight.attribute.termList' || $url == 'admin.module.flight.attribute.termEdit') class="active" @endif>
+                        <a class="menu-item" href="{{ route ('admin.module.flight.attribute.index')}}" data-i18n="Attributes">Attributes</a>
+                    </li>
+                    <li @if ($url == 'admin.module.flight.recovery') class="active" @endif>
+                        <a class="menu-item" href="{{ route ('admin.module.flight.recovery')}}" data-i18n="Recovery">Recovery</a>
+                    </li>
+                </ul>
+            </li>
+            
             <li class=" nav-item">
-                <a href="#"><i class="fa-solid fa-gear"></i>
+                <a href="#">
+                    <i class="fa-solid fa-gear"></i>
                     <span class="menu-title" data-i18n="Setup">Setup</span>
                 </a>
                 <ul class="menu-content">
