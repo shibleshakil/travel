@@ -18,35 +18,35 @@ use App\Helper\SlugHelper;
 class HotelController extends Controller
 {
     public function index(){
-        $datas = Hotel::with('location')->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+        $datas = Hotel::with(['location','location.parentName'])->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         return view('admin.module.hotel.index', compact('datas'));
     }
 
     public function search($name){
         if ($name == "All Data") {
-            $datas = Hotel::with('location')->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Hotel::with(['location','location.parentName'])->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }else{
-            $datas = Hotel::with('location')->where('is_active', 1)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Hotel::with(['location','location.parentName'])->where('is_active', 1)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }
         return view('admin.module.hotel.filter', compact('datas', 'name'));
     }
 
     public function recovery(){
-        $datas = Hotel::with('location')->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+        $datas = Hotel::with(['location','location.parentName'])->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         return view('admin.module.hotel.recovery', compact('datas'));
     }
 
     public function recoverySearch($name){
         if ($name == "All Data") {
-            $datas = Hotel::with('location')->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Hotel::with(['location','location.parentName'])->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }else{
-            $datas = Hotel::with('location')->where('is_active', 0)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Hotel::with(['location','location.parentName'])->where('is_active', 0)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }
         return view('admin.module.hotel.recovery_filter', compact('datas', 'name'));
     }
 
     public function create(){
-        $locations = Location::where('is_active', 1)->orderBy('name')->get();
+        $locations = Location::with(['parentName'])->where('is_active', 1)->orderBy('name')->get();
         $attributes = Attribute::where('is_active', 1)->where('service', 'hotel')->orderBy('position')->get();
         $attributeTerm = AttributeTerm::with('attribute')->where('is_active', 1)->whereHas('attribute', function($query){
             return $query->where('is_active', 1)->where('service', 'hotel');
@@ -63,7 +63,7 @@ class HotelController extends Controller
         $hotelTerms = HotelTerm::where('hotel_id', $id)->select('term_id')->get()->toArray();
         $hotelTerms = array_column($hotelTerms, 'term_id');
         // dd($hotelTerms);
-        $locations = Location::where('is_active', 1)->orderBy('name')->get();
+        $locations = Location::with(['parentName'])->where('is_active', 1)->orderBy('name')->get();
         $attributes = Attribute::where('is_active', 1)->where('service', 'hotel')->orderBy('position')->get();
         $attributeTerm = AttributeTerm::with('attribute')->where('is_active', 1)->whereHas('attribute', function($query){
             return $query->where('is_active', 1)->where('service', 'hotel');

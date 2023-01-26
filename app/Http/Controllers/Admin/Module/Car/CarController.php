@@ -18,35 +18,35 @@ use App\Helper\SlugHelper;
 class CarController extends Controller
 {
     public function index(){
-        $datas = Car::with('location')->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+        $datas = Car::with(['location','location.parentName'])->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         return view('admin.module.car.index', compact('datas'));
     }
 
     public function search($name){
         if ($name == "All Data") {
-            $datas = Car::with('location')->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Car::with(['location','location.parentName'])->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }else{
-            $datas = Car::with('location')->where('is_active', 1)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Car::with(['location','location.parentName'])->where('is_active', 1)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }
         return view('admin.module.car.filter', compact('datas', 'name'));
     }
 
     public function recovery(){
-        $datas = Car::with('location')->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+        $datas = Car::with(['location','location.parentName'])->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         return view('admin.module.car.recovery', compact('datas'));
     }
 
     public function recoverySearch($name){
         if ($name == "All Data") {
-            $datas = Car::with('location')->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Car::with(['location','location.parentName'])->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }else{
-            $datas = Car::with('location')->where('is_active', 0)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Car::with(['location','location.parentName'])->where('is_active', 0)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }
         return view('admin.module.car.recovery_filter', compact('datas', 'name'));
     }
 
     public function create(){
-        $locations = Location::where('is_active', 1)->orderBy('name')->get();
+        $locations = Location::with(['parentName'])->where('is_active', 1)->orderBy('name')->get();
         $attributes = Attribute::where('is_active', 1)->where('service', 'car')->orderBy('position')->get();
         $attributeTerm = AttributeTerm::with('attribute')->where('is_active', 1)->whereHas('attribute', function($query){
             return $query->where('is_active', 1)->where('service', 'car');
@@ -64,7 +64,7 @@ class CarController extends Controller
         $carTerms = CarTerm::where('car_id', $id)->select('term_id')->get()->toArray();
         $carTerms = array_column($carTerms, 'term_id');
 
-        $locations = Location::where('is_active', 1)->orderBy('name')->get();
+        $locations = Location::with(['parentName'])->where('is_active', 1)->orderBy('name')->get();
         $attributes = Attribute::where('is_active', 1)->where('service', 'car')->orderBy('position')->get();
         $attributeTerm = AttributeTerm::with('attribute')->where('is_active', 1)->whereHas('attribute', function($query){
             return $query->where('is_active', 1)->where('service', 'car');

@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('*', function ($settings) {
             $settings->with('url', Route::currentRouteName());
-            $settings->with('setting', DB::table('settings')->find(1));
+            $settings->with('setting', (new \App\Models\Setting())->getDetailsById(1));
         });
     }
 }

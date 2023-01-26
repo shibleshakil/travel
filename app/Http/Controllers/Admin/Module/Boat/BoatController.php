@@ -18,35 +18,35 @@ use App\Helper\SlugHelper;
 class BoatController extends Controller
 {
     public function index(){
-        $datas = Boat::with('location')->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+        $datas = Boat::with(['location','location.parentName'])->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         return view('admin.module.boat.index', compact('datas'));
     }
 
     public function search($name){
         if ($name == "All Data") {
-            $datas = Boat::with('location')->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Boat::with(['location','location.parentName'])->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }else{
-            $datas = Boat::with('location')->where('is_active', 1)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Boat::with(['location','location.parentName'])->where('is_active', 1)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }
         return view('admin.module.boat.filter', compact('datas', 'name'));
     }
 
     public function recovery(){
-        $datas = Boat::with('location')->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+        $datas = Boat::with(['location','location.parentName'])->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         return view('admin.module.boat.recovery', compact('datas'));
     }
 
     public function recoverySearch($name){
         if ($name == "All Data") {
-            $datas = Boat::with('location')->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Boat::with(['location','location.parentName'])->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }else{
-            $datas = Boat::with('location')->where('is_active', 0)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Boat::with(['location','location.parentName'])->where('is_active', 0)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }
         return view('admin.module.boat.recovery_filter', compact('datas', 'name'));
     }
 
     public function create(){
-        $locations = Location::where('is_active', 1)->orderBy('name')->get();
+        $locations = Location::with(['parentName'])->where('is_active', 1)->orderBy('name')->get();
         $attributes = Attribute::where('is_active', 1)->where('service', 'boat')->orderBy('position')->get();
         $attributeTerm = AttributeTerm::with('attribute')->where('is_active', 1)->whereHas('attribute', function($query){
             return $query->where('is_active', 1)->where('service', 'boat');
@@ -64,7 +64,7 @@ class BoatController extends Controller
         $boatTerms = BoatTerm::where('boat_id', $id)->select('term_id')->get()->toArray();
         $boatTerms = array_column($boatTerms, 'term_id');
 
-        $locations = Location::where('is_active', 1)->orderBy('name')->get();
+        $locations = Location::with(['parentName'])->where('is_active', 1)->orderBy('name')->get();
         $attributes = Attribute::where('is_active', 1)->where('service', 'boat')->orderBy('position')->get();
         $attributeTerm = AttributeTerm::with('attribute')->where('is_active', 1)->whereHas('attribute', function($query){
             return $query->where('is_active', 1)->where('service', 'boat');

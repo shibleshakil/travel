@@ -18,35 +18,35 @@ use App\Helper\SlugHelper;
 class FlightController extends Controller
 {
     public function index(){
-        $datas = Flight::with('location')->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+        $datas = Flight::with(['location','location.parentName'])->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         return view('admin.module.flight.index', compact('datas'));
     }
 
     public function search($name){
         if ($name == "All Data") {
-            $datas = Flight::with('location')->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Flight::with(['location','location.parentName'])->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }else{
-            $datas = Flight::with('location')->where('is_active', 1)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Flight::with(['location','location.parentName'])->where('is_active', 1)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }
         return view('admin.module.flight.filter', compact('datas', 'name'));
     }
 
     public function recovery(){
-        $datas = Flight::with('location')->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+        $datas = Flight::with(['location','location.parentName'])->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         return view('admin.module.flight.recovery', compact('datas'));
     }
 
     public function recoverySearch($name){
         if ($name == "All Data") {
-            $datas = Flight::with('location')->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Flight::with(['location','location.parentName'])->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }else{
-            $datas = Flight::with('location')->where('is_active', 0)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Flight::with(['location','location.parentName'])->where('is_active', 0)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }
         return view('admin.module.flight.recovery_filter', compact('datas', 'name'));
     }
 
     public function create(){
-        $locations = Location::where('is_active', 1)->orderBy('name')->get();
+        $locations = Location::with(['parentName'])->where('is_active', 1)->orderBy('name')->get();
         $attributes = Attribute::where('is_active', 1)->where('service', 'flight')->orderBy('position')->get();
         $attributeTerm = AttributeTerm::with('attribute')->where('is_active', 1)->whereHas('attribute', function($query){
             return $query->where('is_active', 1)->where('service', 'flight');
@@ -66,7 +66,7 @@ class FlightController extends Controller
         $FlightTerms = FlightTerm::where('flight_id', $id)->select('term_id')->get()->toArray();
         $flightTerms = array_column($flightTerms, 'term_id');
 
-        $locations = Location::where('is_active', 1)->orderBy('name')->get();
+        $locations = Location::with(['parentName'])->where('is_active', 1)->orderBy('name')->get();
         $attributes = Attribute::where('is_active', 1)->where('service', 'flight')->orderBy('position')->get();
         $attributeTerm = AttributeTerm::with('attribute')->where('is_active', 1)->whereHas('attribute', function($query){
             return $query->where('is_active', 1)->where('service', 'flight');

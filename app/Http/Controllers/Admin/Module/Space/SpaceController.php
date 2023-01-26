@@ -18,35 +18,35 @@ use App\Helper\SlugHelper;
 class SpaceController extends Controller
 {
     public function index(){
-        $datas = Space::with('location')->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+        $datas = Space::with(['location','location.parentName'])->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         return view('admin.module.space.index', compact('datas'));
     }
 
     public function search($name){
         if ($name == "All Data") {
-            $datas = Space::with('location')->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Space::with(['location','location.parentName'])->where('is_active', 1)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }else{
-            $datas = Space::with('location')->where('is_active', 1)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Space::with(['location','location.parentName'])->where('is_active', 1)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }
         return view('admin.module.space.filter', compact('datas', 'name'));
     }
 
     public function recovery(){
-        $datas = Space::with('location')->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+        $datas = Space::with(['location','location.parentName'])->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         return view('admin.module.space.recovery', compact('datas'));
     }
 
     public function recoverySearch($name){
         if ($name == "All Data") {
-            $datas = Space::with('location')->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Space::with(['location','location.parentName'])->where('is_active', 0)->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }else{
-            $datas = Space::with('location')->where('is_active', 0)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
+            $datas = Space::with(['location','location.parentName'])->where('is_active', 0)->where('name', 'like', '%' . $name .'%' )->orderBy('id', 'DESC')->paginate(PaginateHelper::adminPaginate());
         }
         return view('admin.module.space.recovery_filter', compact('datas', 'name'));
     }
 
     public function create(){
-        $locations = Location::where('is_active', 1)->orderBy('name')->get();
+        $locations = Location::with(['parentName'])->where('is_active', 1)->orderBy('name')->get();
         $attributes = Attribute::where('is_active', 1)->where('service', 'space')->orderBy('position')->get();
         $attributeTerm = AttributeTerm::with('attribute')->where('is_active', 1)->whereHas('attribute', function($query){
             return $query->where('is_active', 1)->where('service', 'space');
@@ -66,7 +66,7 @@ class SpaceController extends Controller
         $spaceTerms = SpaceTerm::where('space_id', $id)->select('term_id')->get()->toArray();
         $spaceTerms = array_column($spaceTerms, 'term_id');
 
-        $locations = Location::where('is_active', 1)->orderBy('name')->get();
+        $locations = Location::with(['parentName'])->where('is_active', 1)->orderBy('name')->get();
         $attributes = Attribute::where('is_active', 1)->where('service', 'space')->orderBy('position')->get();
         $attributeTerm = AttributeTerm::with('attribute')->where('is_active', 1)->whereHas('attribute', function($query){
             return $query->where('is_active', 1)->where('service', 'space');
