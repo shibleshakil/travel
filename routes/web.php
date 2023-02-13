@@ -194,6 +194,14 @@ Route::group(['middleware' => ['auth']], function(){
                     Route::delete('/{id}/delete', [App\Http\Controllers\Admin\Module\Flight\AirlineController::class, 'delete'])->name('delete');
                 });
 
+                Route::name('airport.')->prefix('airport')->group(function () {
+                    Route::get('/', [App\Http\Controllers\Admin\Module\Flight\AirportController::class, 'index'])->name('index');
+                    Route::post('/create', [App\Http\Controllers\Admin\Module\Flight\AirportController::class, 'store'])->name('store');
+                    Route::get('/{id}/edit', [App\Http\Controllers\Admin\Module\Flight\AirportController::class, 'edit'])->name('edit');
+                    Route::post('/{id}/update', [App\Http\Controllers\Admin\Module\Flight\AirportController::class, 'update'])->name('update');
+                    Route::delete('/{id}/delete', [App\Http\Controllers\Admin\Module\Flight\AirportController::class, 'delete'])->name('delete');
+                });
+
                 Route::name('attribute.')->prefix('attribute')->group(function () {
                     Route::get('/', [App\Http\Controllers\Admin\Module\Flight\AttributeController::class, 'index'])->name('index');
                     Route::post('/create', [App\Http\Controllers\Admin\Module\Flight\AttributeController::class, 'store'])->name('store');
